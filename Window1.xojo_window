@@ -31,17 +31,48 @@ End
 
 #tag WindowCode
 	#tag Event
+		Sub Open()
+		  x = 100
+		  y = 100
+		  redim dsa(x,y)
+		  redim tca(x,y)
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  dim i,j as integer
 		  
-		  g.ForeColor = &cdf0022
-		  for i = 0 to 99
-		    for j = 0 to 99
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      if dsa(i,j) then
+		        g.ForeColor = &cdf0022
+		      else
+		        g.ForeColor = &ce9e9e9
+		      end
 		      g.FillOval(i*8+1,j*8+1,6,6)
 		    next
 		  next
 		End Sub
 	#tag EndEvent
+
+
+	#tag Property, Flags = &h0
+		dsa(-1,-1) As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		tca(-1,-1) As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		x As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		y As Integer
+	#tag EndProperty
 
 
 #tag EndWindowCode
