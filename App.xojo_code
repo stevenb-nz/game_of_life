@@ -1,6 +1,19 @@
 #tag Class
 Protected Class App
 Inherits Application
+	#tag Event
+		Sub Open()
+		  Randomizer = New Random
+		  
+		End Sub
+	#tag EndEvent
+
+
+	#tag Property, Flags = &h0
+		Randomizer As Random
+	#tag EndProperty
+
+
 	#tag Constant, Name = kEditClear, Type = String, Dynamic = False, Default = \"&Delete", Scope = Public
 		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"&Delete"
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"&Delete"
@@ -16,5 +29,12 @@ Inherits Application
 	#tag EndConstant
 
 
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Randomizer"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+	#tag EndViewBehavior
 End Class
 #tag EndClass

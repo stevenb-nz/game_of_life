@@ -25,7 +25,39 @@ Begin Window Window1
    Resizeable      =   True
    Title           =   "Untitled"
    Visible         =   True
-   Width           =   900
+   Width           =   920
+   Begin PushButton SeedButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Seed"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   820
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   0
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
@@ -54,6 +86,7 @@ End
 		      g.FillOval(i*8+1,j*8+1,6,6)
 		    next
 		  next
+		  
 		End Sub
 	#tag EndEvent
 
@@ -77,6 +110,25 @@ End
 
 #tag EndWindowCode
 
+#tag Events SeedButton
+	#tag Event
+		Sub Action()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      if App.Randomizer.Number < 0.5 then
+		        dsa(i,j) = true
+		      else
+		        dsa(i,j) = false
+		      end
+		    next
+		  next
+		  refresh
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="Name"
@@ -301,5 +353,15 @@ End
 		InitialValue="True"
 		Type="Boolean"
 		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="x"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="y"
+		Group="Behavior"
+		Type="Integer"
 	#tag EndViewProperty
 #tag EndViewBehavior
