@@ -74,6 +74,10 @@ End
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.PenWidth = 1
+		  g.PenHeight = 1
+		  g.DrawLine(800,0,800,799)
+		  
 		  dim i,j as integer
 		  
 		  for i = 0 to x-1
