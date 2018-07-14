@@ -58,6 +58,38 @@ Begin Window Window1
       Visible         =   True
       Width           =   80
    End
+   Begin PushButton ClearButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Clear"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   820
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   52
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
@@ -180,6 +212,21 @@ End
 		      else
 		        dsa(i,j) = false
 		      end
+		    next
+		  next
+		  refresh
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ClearButton
+	#tag Event
+		Sub Action()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      dsa(i,j) = false
 		    next
 		  next
 		  refresh
