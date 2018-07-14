@@ -22,7 +22,7 @@ Begin Window Window1
    MinimizeButton  =   True
    MinWidth        =   64
    Placement       =   0
-   Resizeable      =   True
+   Resizeable      =   False
    Title           =   "Untitled"
    Visible         =   True
    Width           =   920
@@ -63,9 +63,55 @@ End
 
 #tag WindowCode
 	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  dim xx,yy as integer
+		  
+		  xx = x\8
+		  yy = y\8
+		  
+		  if (mrcx <> xx or mrcy <> yy) and xx < 100 and yy < 100 and xx > -1 and yy > -1 then
+		    mrcx = xx
+		    mrcy = yy
+		    dsa(mrcx,mrcy) = not dsa(mrcx,mrcy)
+		    refreshrect(mrcx*8,mrcy*8,8,8)
+		  end
+		  
+		  return true
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event
+		Sub MouseDrag(X As Integer, Y As Integer)
+		  dim xx,yy as integer
+		  
+		  xx = x\8
+		  yy = y\8
+		  
+		  if (mrcx <> xx or mrcy <> yy) and xx < 100 and yy < 100 and xx > -1 and yy > -1 then
+		    mrcx = xx
+		    mrcy = yy
+		    dsa(mrcx,mrcy) = not dsa(mrcx,mrcy)
+		    refreshrect(mrcx*8,mrcy*8,8,8)
+		  end
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub MouseUp(X As Integer, Y As Integer)
+		  mrcx = 100
+		  mrcy = 100
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Open()
 		  x = 100
 		  y = 100
+		  mrcx = 100
+		  mrcy = 100
 		  redim dsa(x,y)
 		  redim tca(x,y)
 		  
@@ -97,6 +143,14 @@ End
 
 	#tag Property, Flags = &h0
 		dsa(-1,-1) As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		mrcx As integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		mrcy As integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
