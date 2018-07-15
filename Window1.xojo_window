@@ -96,17 +96,7 @@ End
 #tag WindowCode
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim xx,yy as integer
-		  
-		  xx = x\8
-		  yy = y\8
-		  
-		  if (mrcx <> xx or mrcy <> yy) and xx < 100 and yy < 100 and xx > -1 and yy > -1 then
-		    mrcx = xx
-		    mrcy = yy
-		    dsa(mrcx,mrcy) = not dsa(mrcx,mrcy)
-		    refreshrect(mrcx*8,mrcy*8,8,8)
-		  end
+		  toggle_paint(x,y)
 		  
 		  return true
 		  
@@ -115,17 +105,7 @@ End
 
 	#tag Event
 		Sub MouseDrag(X As Integer, Y As Integer)
-		  dim xx,yy as integer
-		  
-		  xx = x\8
-		  yy = y\8
-		  
-		  if (mrcx <> xx or mrcy <> yy) and xx < 100 and yy < 100 and xx > -1 and yy > -1 then
-		    mrcx = xx
-		    mrcy = yy
-		    dsa(mrcx,mrcy) = not dsa(mrcx,mrcy)
-		    refreshrect(mrcx*8,mrcy*8,8,8)
-		  end
+		  toggle_paint(x,y)
 		  
 		End Sub
 	#tag EndEvent
@@ -173,6 +153,24 @@ End
 	#tag EndEvent
 
 
+	#tag Method, Flags = &h0
+		Sub toggle_paint(x as integer, y as integer)
+		  dim xx,yy as integer
+		  
+		  xx = x\8
+		  yy = y\8
+		  
+		  if (mrcx <> xx or mrcy <> yy) and xx < 100 and yy < 100 and xx > -1 and yy > -1 then
+		    mrcx = xx
+		    mrcy = yy
+		    dsa(mrcx,mrcy) = not dsa(mrcx,mrcy)
+		    refreshrect(mrcx*8,mrcy*8,8,8)
+		  end
+		  
+		End Sub
+	#tag EndMethod
+
+
 	#tag Property, Flags = &h0
 		dsa(-1,-1) As Boolean
 	#tag EndProperty
@@ -214,6 +212,7 @@ End
 		      end
 		    next
 		  next
+		  
 		  refresh
 		  
 		End Sub
@@ -229,6 +228,7 @@ End
 		      dsa(i,j) = false
 		    next
 		  next
+		  
 		  refresh
 		  
 		End Sub
@@ -468,5 +468,15 @@ End
 		Name="y"
 		Group="Behavior"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="mrcx"
+		Group="Behavior"
+		Type="integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="mrcy"
+		Group="Behavior"
+		Type="integer"
 	#tag EndViewProperty
 #tag EndViewBehavior
