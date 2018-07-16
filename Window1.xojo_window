@@ -90,6 +90,38 @@ Begin Window Window1
       Visible         =   True
       Width           =   80
    End
+   Begin PushButton StepButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Step"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   820
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   84
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
@@ -120,12 +152,21 @@ End
 
 	#tag Event
 		Sub Open()
+		  dim i,j as integer
+		  
 		  x = 100
 		  y = 100
 		  mrcx = 100
 		  mrcy = 100
 		  redim dsa(x,y)
 		  redim tca(x,y)
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      tca(i,j) = 0
+		      dsa(i,j) = false
+		    next
+		  next
 		  
 		End Sub
 	#tag EndEvent
@@ -152,6 +193,12 @@ End
 		End Sub
 	#tag EndEvent
 
+
+	#tag Method, Flags = &h0
+		Sub one_step()
+		  
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub toggle_paint(x as integer, y as integer)
@@ -230,6 +277,14 @@ End
 		  next
 		  
 		  refresh
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events StepButton
+	#tag Event
+		Sub Action()
+		  one_step
 		  
 		End Sub
 	#tag EndEvent
