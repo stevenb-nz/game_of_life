@@ -122,6 +122,38 @@ Begin Window Window1
       Visible         =   True
       Width           =   80
    End
+   Begin PushButton StartStopButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Start"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   820
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   116
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
@@ -153,6 +185,8 @@ End
 	#tag Event
 		Sub Open()
 		  dim i,j as integer
+		  
+		  mytimer = new CustomTimer
 		  
 		  x = 100
 		  y = 100
@@ -195,7 +229,64 @@ End
 
 
 	#tag Method, Flags = &h0
+		Sub inc_neighbours(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = 99
+		  end
+		  d = j + 1
+		  if d > 99 then
+		    d = 0
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = 99
+		  end
+		  r = i + 1
+		  if r > 99 then
+		    r = 0
+		  end
+		  
+		  tca(l,u) = tca(l,u) + 1
+		  tca(l,j) = tca(l,j) + 1
+		  tca(l,d) = tca(l,d) + 1
+		  tca(i,d) = tca(i,d) + 1
+		  tca(r,d) = tca(r,d) + 1
+		  tca(r,j) = tca(r,j) + 1
+		  tca(r,u) = tca(r,u) + 1
+		  tca(i,u) = tca(i,u) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub one_step()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      if dsa(i,j) then
+		        inc_neighbours(i,j)
+		      end
+		    next
+		  next
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      select case tca(i,j)
+		      case is < 2
+		        dsa(i,j) = false
+		      case 3
+		        dsa(i,j) = true
+		      case is > 3
+		        dsa(i,j) = false
+		      end select
+		      tca(i,j) = 0
+		    next
+		  next
+		  
 		  
 		End Sub
 	#tag EndMethod
@@ -228,6 +319,10 @@ End
 
 	#tag Property, Flags = &h0
 		mrcy As integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		mytimer As CustomTimer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -285,6 +380,22 @@ End
 	#tag Event
 		Sub Action()
 		  one_step
+		  refresh
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events StartStopButton
+	#tag Event
+		Sub Action()
+		  if me.Caption = "Start" then
+		    me.Caption = "Stop"
+		    mytimer.Period = 0
+		    mytimer.Mode = Timer.ModeMultiple
+		  else
+		    me.Caption = "Start"
+		    mytimer.Mode = Timer.ModeOff
+		  end
 		  
 		End Sub
 	#tag EndEvent
