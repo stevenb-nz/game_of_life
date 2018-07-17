@@ -4,6 +4,8 @@ Inherits Timer
 	#tag Event
 		Sub Action()
 		  Window1.one_step
+		  Window1.generations = Window1.generations+1
+		  Window1.GenCountLabel.Text = Str(Window1.generations,"###,###")
 		  Window1.Refresh
 		  
 		End Sub

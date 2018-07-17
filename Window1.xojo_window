@@ -23,7 +23,7 @@ Begin Window Window1
    MinWidth        =   64
    Placement       =   0
    Resizeable      =   False
-   Title           =   "Untitled"
+   Title           =   "game of life"
    Visible         =   True
    Width           =   920
    Begin PushButton SeedButton
@@ -154,6 +154,76 @@ Begin Window Window1
       Visible         =   True
       Width           =   80
    End
+   Begin Label GensLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   820
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Generations:"
+      TextAlign       =   2
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   148
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin Label GenCountLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   820
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "0"
+      TextAlign       =   2
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   180
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
@@ -187,6 +257,8 @@ End
 		  dim i,j as integer
 		  
 		  mytimer = new CustomTimer
+		  generations = 0
+		  GenCountLabel.text = str(generations,"###,###")
 		  
 		  x = 100
 		  y = 100
@@ -314,6 +386,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		generations As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		mrcx As integer
 	#tag EndProperty
 
@@ -370,7 +446,8 @@ End
 		      dsa(i,j) = false
 		    next
 		  next
-		  
+		  generations = 0
+		  GenCountLabel.Text = Str(generations,"###,###")
 		  refresh
 		  
 		End Sub
@@ -644,5 +721,10 @@ End
 		Name="mrcy"
 		Group="Behavior"
 		Type="integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="generations"
+		Group="Behavior"
+		Type="Integer"
 	#tag EndViewProperty
 #tag EndViewBehavior
