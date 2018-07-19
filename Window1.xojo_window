@@ -352,6 +352,9 @@ End
 		  
 		  dim i,j as integer
 		  
+		  g.ForeColor = &cf0f0f0
+		  g.FillRect(392,392,16,16)
+		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
 		      if dsa(i,j) then
