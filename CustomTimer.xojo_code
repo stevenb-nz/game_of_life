@@ -3,10 +3,10 @@ Protected Class CustomTimer
 Inherits Timer
 	#tag Event
 		Sub Action()
-		  Window1.one_step
-		  Window1.generations = Window1.generations+1
-		  Window1.GenCountLabel.Text = Str(Window1.generations,"###,###")
-		  Window1.Refresh
+		  GameWindow.one_step
+		  GameWindow.generations = GameWindow.generations+1
+		  GameWindow.GenCountLabel.Text = Str(GameWindow.generations,GameWindow.gens_fstring)
+		  GameWindow.Refresh
 		  
 		End Sub
 	#tag EndEvent

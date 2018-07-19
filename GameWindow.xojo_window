@@ -1,5 +1,5 @@
 #tag Window
-Begin Window Window1
+Begin Window GameWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -324,9 +324,8 @@ End
 		  dim i,j as integer
 		  
 		  mytimer = new CustomTimer
-		  generations = 0
-		  GenCountLabel.text = str(generations,"###,###")
-		  
+		  gens_fstring = "#,###,###"
+		  reset_gens
 		  x = 100
 		  y = 100
 		  mrcx = 100
@@ -434,6 +433,14 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub reset_gens()
+		  generations = 0
+		  GenCountLabel.Text = Str(generations,gens_fstring)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub toggle_paint(x as integer, y as integer)
 		  dim xx,yy as integer
 		  
@@ -445,6 +452,7 @@ End
 		    mrcy = yy
 		    dsa(mrcx,mrcy) = not dsa(mrcx,mrcy)
 		    refreshrect(mrcx*8,mrcy*8,8,8)
+		    reset_gens
 		  end
 		  
 		End Sub
@@ -457,6 +465,10 @@ End
 
 	#tag Property, Flags = &h0
 		generations As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		gens_fstring As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -501,6 +513,7 @@ End
 		    next
 		  next
 		  
+		  reset_gens
 		  refresh
 		  
 		End Sub
@@ -516,8 +529,7 @@ End
 		      dsa(i,j) = false
 		    next
 		  next
-		  generations = 0
-		  GenCountLabel.Text = Str(generations,"###,###")
+		  reset_gens
 		  refresh
 		  
 		End Sub
