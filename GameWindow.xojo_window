@@ -503,8 +503,8 @@ End
 		Sub Action()
 		  dim i,j as integer
 		  
-		  for i = 0 to x-1
-		    for j = 0 to y-1
+		  for i = 25 to x-26
+		    for j = 25 to y-26
 		      if App.Randomizer.Number < 0.5 then
 		        dsa(i,j) = true
 		      else
@@ -815,5 +815,10 @@ End
 		Name="generations"
 		Group="Behavior"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="gens_fstring"
+		Group="Behavior"
+		Type="String"
 	#tag EndViewProperty
 #tag EndViewBehavior
