@@ -403,15 +403,305 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub inc_neighbours_b(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = 99
+		  end
+		  d = j + 1
+		  if d > 99 then
+		    d = 0
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = 99
+		  end
+		  r = i + 1
+		  if r > 99 then
+		    r = 0
+		  end
+		  
+		  tca(l,u) = tca(l,u) + 1
+		  tca(l,j) = tca(l,j) + 1
+		  tca(l,d) = tca(l,d) + 1
+		  tca(i,d) = tca(i,d) + 1
+		  tca(r,d) = tca(r,d) + 1
+		  tca(r,j) = tca(r,j) + 1
+		  tca(r,u) = tca(r,u) + 1
+		  tca(i,u) = tca(i,u) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub inc_neighbours_bl(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = 99
+		  end
+		  d = j + 1
+		  if d > 99 then
+		    d = 0
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = 99
+		  end
+		  r = i + 1
+		  if r > 99 then
+		    r = 0
+		  end
+		  
+		  tca(l,u) = tca(l,u) + 1
+		  tca(l,j) = tca(l,j) + 1
+		  tca(l,d) = tca(l,d) + 1
+		  tca(i,d) = tca(i,d) + 1
+		  tca(r,d) = tca(r,d) + 1
+		  tca(r,j) = tca(r,j) + 1
+		  tca(r,u) = tca(r,u) + 1
+		  tca(i,u) = tca(i,u) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub inc_neighbours_br(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = 99
+		  end
+		  d = j + 1
+		  if d > 99 then
+		    d = 0
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = 99
+		  end
+		  r = i + 1
+		  if r > 99 then
+		    r = 0
+		  end
+		  
+		  tca(l,u) = tca(l,u) + 1
+		  tca(l,j) = tca(l,j) + 1
+		  tca(l,d) = tca(l,d) + 1
+		  tca(i,d) = tca(i,d) + 1
+		  tca(r,d) = tca(r,d) + 1
+		  tca(r,j) = tca(r,j) + 1
+		  tca(r,u) = tca(r,u) + 1
+		  tca(i,u) = tca(i,u) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub inc_neighbours_l(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = 99
+		  end
+		  d = j + 1
+		  if d > 99 then
+		    d = 0
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = 99
+		  end
+		  r = i + 1
+		  if r > 99 then
+		    r = 0
+		  end
+		  
+		  tca(l,u) = tca(l,u) + 1
+		  tca(l,j) = tca(l,j) + 1
+		  tca(l,d) = tca(l,d) + 1
+		  tca(i,d) = tca(i,d) + 1
+		  tca(r,d) = tca(r,d) + 1
+		  tca(r,j) = tca(r,j) + 1
+		  tca(r,u) = tca(r,u) + 1
+		  tca(i,u) = tca(i,u) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub inc_neighbours_r(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = 99
+		  end
+		  d = j + 1
+		  if d > 99 then
+		    d = 0
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = 99
+		  end
+		  r = i + 1
+		  if r > 99 then
+		    r = 0
+		  end
+		  
+		  tca(l,u) = tca(l,u) + 1
+		  tca(l,j) = tca(l,j) + 1
+		  tca(l,d) = tca(l,d) + 1
+		  tca(i,d) = tca(i,d) + 1
+		  tca(r,d) = tca(r,d) + 1
+		  tca(r,j) = tca(r,j) + 1
+		  tca(r,u) = tca(r,u) + 1
+		  tca(i,u) = tca(i,u) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub inc_neighbours_t(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = 99
+		  end
+		  d = j + 1
+		  if d > 99 then
+		    d = 0
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = 99
+		  end
+		  r = i + 1
+		  if r > 99 then
+		    r = 0
+		  end
+		  
+		  tca(l,u) = tca(l,u) + 1
+		  tca(l,j) = tca(l,j) + 1
+		  tca(l,d) = tca(l,d) + 1
+		  tca(i,d) = tca(i,d) + 1
+		  tca(r,d) = tca(r,d) + 1
+		  tca(r,j) = tca(r,j) + 1
+		  tca(r,u) = tca(r,u) + 1
+		  tca(i,u) = tca(i,u) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub inc_neighbours_tl(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = 99
+		  end
+		  d = j + 1
+		  if d > 99 then
+		    d = 0
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = 99
+		  end
+		  r = i + 1
+		  if r > 99 then
+		    r = 0
+		  end
+		  
+		  tca(l,u) = tca(l,u) + 1
+		  tca(l,j) = tca(l,j) + 1
+		  tca(l,d) = tca(l,d) + 1
+		  tca(i,d) = tca(i,d) + 1
+		  tca(r,d) = tca(r,d) + 1
+		  tca(r,j) = tca(r,j) + 1
+		  tca(r,u) = tca(r,u) + 1
+		  tca(i,u) = tca(i,u) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub inc_neighbours_tr(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = 99
+		  end
+		  d = j + 1
+		  if d > 99 then
+		    d = 0
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = 99
+		  end
+		  r = i + 1
+		  if r > 99 then
+		    r = 0
+		  end
+		  
+		  tca(l,u) = tca(l,u) + 1
+		  tca(l,j) = tca(l,j) + 1
+		  tca(l,d) = tca(l,d) + 1
+		  tca(i,d) = tca(i,d) + 1
+		  tca(r,d) = tca(r,d) + 1
+		  tca(r,j) = tca(r,j) + 1
+		  tca(r,u) = tca(r,u) + 1
+		  tca(i,u) = tca(i,u) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub one_step()
 		  dim i,j as integer
 		  
-		  for i = 0 to x-1
-		    for j = 0 to y-1
+		  if dsa(0,0) then
+		    inc_neighbours(0,0) 'tl
+		  end
+		  if dsa(x-1,0) then
+		    inc_neighbours(x-1,0) 'tr
+		  end
+		  for i = 1 to x-2
+		    if dsa(i,0) then
+		      inc_neighbours(i,0) 'l
+		    end
+		    for j = 1 to y-2
 		      if dsa(i,j) then
 		        inc_neighbours(i,j)
 		      end
 		    next
+		    if dsa(i,y-1) then
+		      inc_neighbours(i,y-1) 'r
+		    end
+		  next
+		  if dsa(0,y-1) then
+		    inc_neighbours(0,y-1) 'bl
+		  end
+		  if dsa(x-1,y-1) then
+		    inc_neighbours(x-1,y-1) 'br
+		  end
+		  for j = 1 to y-2
+		    if dsa(0,j) then
+		      inc_neighbours(0,j) 't
+		    end
+		    if dsa(x-1,j) then
+		      inc_neighbours(x-1,j) 'b
+		    end
 		  next
 		  
 		  for i = 0 to x-1
@@ -820,5 +1110,6 @@ End
 		Name="gens_fstring"
 		Group="Behavior"
 		Type="String"
+		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 #tag EndViewBehavior
