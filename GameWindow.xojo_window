@@ -368,6 +368,14 @@ End
 		End Sub
 	#tag EndEvent
 
+	#tag Event
+		Sub Resized()
+		  self.height = 8*y
+		  self.width = 8*x + 120
+		  
+		End Sub
+	#tag EndEvent
+
 
 	#tag Method, Flags = &h0
 		Sub inc_neighbours(i as integer, j as integer)
@@ -791,10 +799,13 @@ End
 #tag Events SeedButton
 	#tag Event
 		Sub Action()
-		  dim i,j as integer
+		  dim i,j,k,l as integer
 		  
-		  for i = 25 to x-26
-		    for j = 25 to y-26
+		  k = app.Randomizer.InRange(1,x\2)
+		  l = app.Randomizer.InRange(1,y\2)
+		  
+		  for i = x\2-k to (x\2-1)+k
+		    for j = y\2-l to (y\2-1)+l
 		      if App.Randomizer.Number < 0.5 then
 		        dsa(i,j) = true
 		      else
@@ -814,6 +825,8 @@ End
 		Sub Action()
 		  dim i,j as integer
 		  
+		  StartStopButton.Caption = "Start"
+		  mytimer.Mode = Timer.ModeOff
 		  for i = 0 to x-1
 		    for j = 0 to y-1
 		      dsa(i,j) = false
