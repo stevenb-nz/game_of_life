@@ -382,21 +382,9 @@ End
 		  dim u,d,l,r as integer
 		  
 		  u = j - 1
-		  if u < 0 then
-		    u = 99
-		  end
 		  d = j + 1
-		  if d > 99 then
-		    d = 0
-		  end
 		  l = i - 1
-		  if l < 0 then
-		    l = 99
-		  end
 		  r = i + 1
-		  if r > 99 then
-		    r = 0
-		  end
 		  
 		  tca(l,u) = tca(l,u) + 1
 		  tca(l,j) = tca(l,j) + 1
@@ -679,14 +667,14 @@ End
 		  dim i,j as integer
 		  
 		  if dsa(0,0) then
-		    inc_neighbours(0,0) 'tl
+		    inc_neighbours_tl(0,0)
 		  end
 		  if dsa(x-1,0) then
-		    inc_neighbours(x-1,0) 'tr
+		    inc_neighbours_tr(x-1,0)
 		  end
 		  for i = 1 to x-2
 		    if dsa(i,0) then
-		      inc_neighbours(i,0) 'l
+		      inc_neighbours_l(i,0)
 		    end
 		    for j = 1 to y-2
 		      if dsa(i,j) then
@@ -694,21 +682,21 @@ End
 		      end
 		    next
 		    if dsa(i,y-1) then
-		      inc_neighbours(i,y-1) 'r
+		      inc_neighbours_r(i,y-1)
 		    end
 		  next
 		  if dsa(0,y-1) then
-		    inc_neighbours(0,y-1) 'bl
+		    inc_neighbours_bl(0,y-1)
 		  end
 		  if dsa(x-1,y-1) then
-		    inc_neighbours(x-1,y-1) 'br
+		    inc_neighbours_br(x-1,y-1)
 		  end
 		  for j = 1 to y-2
 		    if dsa(0,j) then
-		      inc_neighbours(0,j) 't
+		      inc_neighbours_t(0,j)
 		    end
 		    if dsa(x-1,j) then
-		      inc_neighbours(x-1,j) 'b
+		      inc_neighbours_b(x-1,j)
 		    end
 		  next
 		  
