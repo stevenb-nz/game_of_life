@@ -403,21 +403,9 @@ End
 		  dim u,d,l,r as integer
 		  
 		  u = j - 1
-		  if u < 0 then
-		    u = 99
-		  end
-		  d = j + 1
-		  if d > 99 then
-		    d = 0
-		  end
+		  d = 0
 		  l = i - 1
-		  if l < 0 then
-		    l = 99
-		  end
 		  r = i + 1
-		  if r > 99 then
-		    r = 0
-		  end
 		  
 		  tca(l,u) = tca(l,u) + 1
 		  tca(l,j) = tca(l,j) + 1
@@ -436,21 +424,9 @@ End
 		  dim u,d,l,r as integer
 		  
 		  u = j - 1
-		  if u < 0 then
-		    u = 99
-		  end
-		  d = j + 1
-		  if d > 99 then
-		    d = 0
-		  end
-		  l = i - 1
-		  if l < 0 then
-		    l = 99
-		  end
+		  d = 0
+		  l = x-1
 		  r = i + 1
-		  if r > 99 then
-		    r = 0
-		  end
 		  
 		  tca(l,u) = tca(l,u) + 1
 		  tca(l,j) = tca(l,j) + 1
@@ -469,21 +445,9 @@ End
 		  dim u,d,l,r as integer
 		  
 		  u = j - 1
-		  if u < 0 then
-		    u = 99
-		  end
-		  d = j + 1
-		  if d > 99 then
-		    d = 0
-		  end
+		  d = 0
 		  l = i - 1
-		  if l < 0 then
-		    l = 99
-		  end
-		  r = i + 1
-		  if r > 99 then
-		    r = 0
-		  end
+		  r = 0
 		  
 		  tca(l,u) = tca(l,u) + 1
 		  tca(l,j) = tca(l,j) + 1
@@ -502,21 +466,9 @@ End
 		  dim u,d,l,r as integer
 		  
 		  u = j - 1
-		  if u < 0 then
-		    u = 99
-		  end
 		  d = j + 1
-		  if d > 99 then
-		    d = 0
-		  end
-		  l = i - 1
-		  if l < 0 then
-		    l = 99
-		  end
+		  l = x-1
 		  r = i + 1
-		  if r > 99 then
-		    r = 0
-		  end
 		  
 		  tca(l,u) = tca(l,u) + 1
 		  tca(l,j) = tca(l,j) + 1
@@ -535,21 +487,9 @@ End
 		  dim u,d,l,r as integer
 		  
 		  u = j - 1
-		  if u < 0 then
-		    u = 99
-		  end
 		  d = j + 1
-		  if d > 99 then
-		    d = 0
-		  end
 		  l = i - 1
-		  if l < 0 then
-		    l = 99
-		  end
-		  r = i + 1
-		  if r > 99 then
-		    r = 0
-		  end
+		  r = 0
 		  
 		  tca(l,u) = tca(l,u) + 1
 		  tca(l,j) = tca(l,j) + 1
@@ -567,22 +507,10 @@ End
 		Sub inc_neighbours_t(i as integer, j as integer)
 		  dim u,d,l,r as integer
 		  
-		  u = j - 1
-		  if u < 0 then
-		    u = 99
-		  end
+		  u = y-1
 		  d = j + 1
-		  if d > 99 then
-		    d = 0
-		  end
 		  l = i - 1
-		  if l < 0 then
-		    l = 99
-		  end
 		  r = i + 1
-		  if r > 99 then
-		    r = 0
-		  end
 		  
 		  tca(l,u) = tca(l,u) + 1
 		  tca(l,j) = tca(l,j) + 1
@@ -600,22 +528,10 @@ End
 		Sub inc_neighbours_tl(i as integer, j as integer)
 		  dim u,d,l,r as integer
 		  
-		  u = j - 1
-		  if u < 0 then
-		    u = 99
-		  end
+		  u = y-1
 		  d = j + 1
-		  if d > 99 then
-		    d = 0
-		  end
-		  l = i - 1
-		  if l < 0 then
-		    l = 99
-		  end
+		  l = x-1
 		  r = i + 1
-		  if r > 99 then
-		    r = 0
-		  end
 		  
 		  tca(l,u) = tca(l,u) + 1
 		  tca(l,j) = tca(l,j) + 1
@@ -633,22 +549,10 @@ End
 		Sub inc_neighbours_tr(i as integer, j as integer)
 		  dim u,d,l,r as integer
 		  
-		  u = j - 1
-		  if u < 0 then
-		    u = 99
-		  end
+		  u = y-1
 		  d = j + 1
-		  if d > 99 then
-		    d = 0
-		  end
 		  l = i - 1
-		  if l < 0 then
-		    l = 99
-		  end
-		  r = i + 1
-		  if r > 99 then
-		    r = 0
-		  end
+		  r = 0
 		  
 		  tca(l,u) = tca(l,u) + 1
 		  tca(l,j) = tca(l,j) + 1
@@ -674,7 +578,7 @@ End
 		  end
 		  for i = 1 to x-2
 		    if dsa(i,0) then
-		      inc_neighbours_l(i,0)
+		      inc_neighbours_t(i,0)
 		    end
 		    for j = 1 to y-2
 		      if dsa(i,j) then
@@ -682,7 +586,7 @@ End
 		      end
 		    next
 		    if dsa(i,y-1) then
-		      inc_neighbours_r(i,y-1)
+		      inc_neighbours_b(i,y-1)
 		    end
 		  next
 		  if dsa(0,y-1) then
@@ -693,10 +597,10 @@ End
 		  end
 		  for j = 1 to y-2
 		    if dsa(0,j) then
-		      inc_neighbours_t(0,j)
+		      inc_neighbours_l(0,j)
 		    end
 		    if dsa(x-1,j) then
-		      inc_neighbours_b(x-1,j)
+		      inc_neighbours_r(x-1,j)
 		    end
 		  next
 		  
