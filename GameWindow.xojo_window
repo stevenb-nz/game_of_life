@@ -399,6 +399,27 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub inc_neighbours_2d(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  d = j + 1
+		  l = i - 1
+		  r = i + 1
+		  
+		  tca(l,u) = tca(l,u) + 1
+		  tca(l,j) = tca(l,j) + 1
+		  tca(l,d) = tca(l,d) + 1
+		  tca(i,d) = tca(i,d) + 1
+		  tca(r,d) = tca(r,d) + 1
+		  tca(r,j) = tca(r,j) + 1
+		  tca(r,u) = tca(r,u) + 1
+		  tca(i,u) = tca(i,u) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub inc_neighbours_b(i as integer, j as integer)
 		  dim u,d,l,r as integer
 		  
@@ -623,6 +644,62 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub one_step_2d()
+		  dim i,j as integer
+		  
+		  if dsa(0,0) then
+		    inc_neighbours_tl(0,0)
+		  end
+		  if dsa(x-1,0) then
+		    inc_neighbours_tr(x-1,0)
+		  end
+		  for i = 1 to x-2
+		    if dsa(i,0) then
+		      inc_neighbours_t(i,0)
+		    end
+		    for j = 1 to y-2
+		      if dsa(i,j) then
+		        inc_neighbours(i,j)
+		      end
+		    next
+		    if dsa(i,y-1) then
+		      inc_neighbours_b(i,y-1)
+		    end
+		  next
+		  if dsa(0,y-1) then
+		    inc_neighbours_bl(0,y-1)
+		  end
+		  if dsa(x-1,y-1) then
+		    inc_neighbours_br(x-1,y-1)
+		  end
+		  for j = 1 to y-2
+		    if dsa(0,j) then
+		      inc_neighbours_l(0,j)
+		    end
+		    if dsa(x-1,j) then
+		      inc_neighbours_r(x-1,j)
+		    end
+		  next
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      select case tca(i,j)
+		      case is < 2
+		        dsa(i,j) = false
+		      case 3
+		        dsa(i,j) = true
+		      case is > 3
+		        dsa(i,j) = false
+		      end select
+		      tca(i,j) = 0
+		    next
+		  next
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub reset_gens()
 		  generations = 0
 		  GenCountLabel.Text = Str(generations,gens_fstring)
@@ -733,7 +810,11 @@ End
 #tag Events StepButton
 	#tag Event
 		Sub Action()
-		  one_step
+		  if ModeLabel.Text = "classic" then
+		    one_step
+		  else
+		    'one_step_2d
+		  end
 		  refresh
 		  
 		End Sub
@@ -757,6 +838,11 @@ End
 #tag Events ModeButton
 	#tag Event
 		Sub Action()
+		  if ModeLabel.Text = "classic" then
+		    ModeLabel.Text = "2 deep"
+		  else
+		    ModeLabel.Text = "classic"
+		  end
 		  
 		End Sub
 	#tag EndEvent
