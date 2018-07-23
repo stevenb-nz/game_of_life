@@ -743,6 +743,14 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		l1_weight As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		l2_weight As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		mrcx As integer
 	#tag EndProperty
 
