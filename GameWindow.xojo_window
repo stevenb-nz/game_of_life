@@ -727,6 +727,10 @@ End
 
 
 	#tag Property, Flags = &h0
+		actions(-1) As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		dsa(-1,-1) As Boolean
 	#tag EndProperty
 
