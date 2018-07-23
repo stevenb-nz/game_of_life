@@ -330,7 +330,8 @@ End
 		  y = 100
 		  l1_weight = 1
 		  l2_weight = 0
-		  redim actions(l1_weight * 8 + l2_weight * 16)
+		  redim actions(l1_weight * 8 + l2_weight * 16 + 1)
+		  load_actions("ddrcddddd")
 		  mrcx = 100
 		  mrcy = 100
 		  redim dsa(x,y)
@@ -591,6 +592,17 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub load_actions(input_string as String)
+		  if len(input_string) = UBound(actions) then
+		    dim i as integer
+		    for i = 0 to UBound(actions)
+		      actions(i) = mid(input_string,i,1)
+		    next
+		  end
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub one_step()
 		  dim i,j as integer
 		  
@@ -700,6 +712,20 @@ End
 		  
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function read_actions() As string
+		  dim s as string
+		  dim i as integer
+		  
+		  s = ""
+		  for i = 0 to UBound(actions)
+		    s = s + actions(i)
+		  next
+		  return s
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
