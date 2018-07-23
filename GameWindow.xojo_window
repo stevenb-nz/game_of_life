@@ -328,6 +328,9 @@ End
 		  reset_gens
 		  x = 100
 		  y = 100
+		  l1_weight = 1
+		  l2_weight = 0
+		  redim actions(l1_weight * 8 + l2_weight * 16)
 		  mrcx = 100
 		  mrcy = 100
 		  redim dsa(x,y)
@@ -1114,5 +1117,15 @@ End
 		Group="Behavior"
 		Type="String"
 		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="l1_weight"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="l2_weight"
+		Group="Behavior"
+		Type="Integer"
 	#tag EndViewProperty
 #tag EndViewBehavior
