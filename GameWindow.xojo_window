@@ -330,7 +330,7 @@ End
 		  y = 100
 		  l1_weight = 1
 		  l2_weight = 0
-		  redim actions(l1_weight * 8 + l2_weight * 16 + 1)
+		  redim actions(l1_weight * 8 + l2_weight * 16)
 		  load_actions("ddrcddddd")
 		  mrcx = 100
 		  mrcy = 100
@@ -593,12 +593,13 @@ End
 
 	#tag Method, Flags = &h0
 		Sub load_actions(input_string as String)
-		  if len(input_string) = UBound(actions) then
+		  if len(input_string) = UBound(actions)+1 then
 		    dim i as integer
 		    for i = 0 to UBound(actions)
-		      actions(i) = mid(input_string,i,1)
+		      actions(i) = mid(input_string,i+1,1)
 		    next
 		  end
+		  
 		End Sub
 	#tag EndMethod
 
@@ -646,12 +647,12 @@ End
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
-		      select case tca(i,j)
-		      case is < 2
-		        dsa(i,j) = false
-		      case 3
+		      select case actions(tca(i,j))
+		      case "c"
 		        dsa(i,j) = true
-		      case is > 3
+		      case "u"
+		        dsa(i,j) = not dsa(i,j)
+		      case "d"
 		        dsa(i,j) = false
 		      end select
 		      tca(i,j) = 0
@@ -703,18 +704,17 @@ End
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
-		      select case tca(i,j)
-		      case is < 2
-		        dsa(i,j) = false
-		      case 3
+		      select case actions(tca(i,j))
+		      case "c"
 		        dsa(i,j) = true
-		      case is > 3
+		      case "u"
+		        dsa(i,j) = not dsa(i,j)
+		      case "d"
 		        dsa(i,j) = false
 		      end select
 		      tca(i,j) = 0
 		    next
 		  next
-		  
 		  
 		End Sub
 	#tag EndMethod
