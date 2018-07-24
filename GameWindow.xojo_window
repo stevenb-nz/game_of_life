@@ -605,6 +605,7 @@ End
 	#tag Method, Flags = &h0
 		Sub one_step()
 		  dim i,j as integer
+		  dim bu_actions as string
 		  
 		  if dsa(0,0) then
 		    inc_neighbours_tl(0,0)
@@ -640,6 +641,9 @@ End
 		    end
 		  next
 		  
+		  bu_actions = read_actions
+		  load_actions("ddrcddddd")
+		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
 		      select case tca(i,j)
@@ -654,6 +658,7 @@ End
 		    next
 		  next
 		  
+		  load_actions(bu_actions)
 		  
 		End Sub
 	#tag EndMethod
