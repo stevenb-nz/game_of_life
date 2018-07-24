@@ -856,7 +856,9 @@ End
 		  else
 		    'one_step_2d
 		  end
-		  refresh
+		  generations = generations+1
+		  GenCountLabel.Text = Str(generations,gens_fstring)
+		  Refresh
 		  
 		End Sub
 	#tag EndEvent
