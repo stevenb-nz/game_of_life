@@ -6,7 +6,7 @@ Inherits Timer
 		  if GameWindow.ModeLabel.Text = "classic" then
 		    GameWindow.one_step
 		  else
-		    'GameWindow.one_step_2d
+		    GameWindow.one_step_2d
 		  end
 		  GameWindow.generations = GameWindow.generations+1
 		  GameWindow.GenCountLabel.Text = Str(GameWindow.generations,GameWindow.gens_fstring)
