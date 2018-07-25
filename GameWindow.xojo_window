@@ -604,9 +604,29 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub next_gen()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      select case actions(tca(i,j))
+		      case "c"
+		        dsa(i,j) = true
+		      case "u"
+		        dsa(i,j) = not dsa(i,j)
+		      case "d"
+		        dsa(i,j) = false
+		      end select
+		      tca(i,j) = 0
+		    next
+		  next
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub one_step()
 		  dim i,j as integer
-		  dim bu_actions as string
 		  
 		  if dsa(0,0) then
 		    inc_neighbours_tl(0,0)
@@ -642,25 +662,7 @@ End
 		    end
 		  next
 		  
-		  bu_actions = read_actions
-		  load_actions("ddrcddddd")
-		  
-		  for i = 0 to x-1
-		    for j = 0 to y-1
-		      select case actions(tca(i,j))
-		      case "c"
-		        dsa(i,j) = true
-		      case "u"
-		        dsa(i,j) = not dsa(i,j)
-		      case "d"
-		        dsa(i,j) = false
-		      end select
-		      tca(i,j) = 0
-		    next
-		  next
-		  
-		  load_actions(bu_actions)
-		  
+		  next_gen
 		End Sub
 	#tag EndMethod
 
@@ -702,19 +704,7 @@ End
 		    end
 		  next
 		  
-		  for i = 0 to x-1
-		    for j = 0 to y-1
-		      select case actions(tca(i,j))
-		      case "c"
-		        dsa(i,j) = true
-		      case "u"
-		        dsa(i,j) = not dsa(i,j)
-		      case "d"
-		        dsa(i,j) = false
-		      end select
-		      tca(i,j) = 0
-		    next
-		  next
+		  next_gen
 		  
 		End Sub
 	#tag EndMethod
@@ -890,6 +880,10 @@ End
 		    ModeLabel.Text = "2 deep"
 		  else
 		    ModeLabel.Text = "classic"
+		    l1_weight = 1
+		    l2_weight = 0
+		    redim actions(l1_weight * 8 + l2_weight * 16)
+		    load_actions("ddrcddddd")
 		  end
 		  
 		End Sub
