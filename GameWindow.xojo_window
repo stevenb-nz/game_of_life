@@ -646,12 +646,21 @@ End
 
 	#tag Method, Flags = &h0
 		Sub load_actions(input_string as String)
-		  if len(input_string) = UBound(actions)+1 then
-		    dim i as integer
-		    for i = 0 to UBound(actions)
-		      actions(i) = mid(input_string,i+1,1)
-		    next
+		  dim i as integer
+		  dim action_string as string
+		  
+		  if len(action_string) <> UBound(actions)+1 then
+		    if len(action_string) > UBound(actions)+1 then
+		      action_string = left(action_string,UBound(actions)+1)
+		    else
+		      for i = 0 to UBound(actions)-len(input_string)
+		        action_string = action_string + action_list(app.Randomizer.InRange(0,3))
+		      next
+		    end
 		  end
+		  for i = 0 to UBound(actions)
+		    actions(i) = mid(action_string,i+1,1)
+		  next
 		  
 		End Sub
 	#tag EndMethod
@@ -919,7 +928,6 @@ End
 		    for i = 0 to UBound(actions)
 		      actions(i) = action_list(app.Randomizer.InRange(0,3))
 		    next
-		    MsgBox str(l1_weight)+", "+str(l2_weight)+", "+read_actions
 		  else
 		    ModeLabel.Text = "classic"
 		    l1_weight = 1
@@ -929,6 +937,16 @@ End
 		  end
 		  
 		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ModeLabel
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  if me.Text = "2 deep" then
+		    MsgBox str(l1_weight)+", "+str(l2_weight)+", "+read_actions
+		  end
+		  
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
