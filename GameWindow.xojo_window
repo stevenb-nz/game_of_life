@@ -434,39 +434,40 @@ End
 		  end
 		  
 		  if l2_weight > 0 then
-		    'u2 = j - 2
-		    'if u < 0 then
-		    'u = 
-		    'end
-		    'd2 = j + 2
-		    'if u < 0 then
-		    'u = 
-		    'end
-		    'l2 = i - 2
-		    'if u < 0 then
-		    'u = 
-		    'end
-		    'r2 = i + 2
-		    'if u < 0 then
-		    'u = 
-		    'end
-		    'tca(l,u) = tca(l,u) + l2_weight
-		    'tca(l,j) = tca(l,j) + l2_weight
-		    'tca(l,d) = tca(l,d) + l2_weight
-		    'tca(i,d) = tca(i,d) + l2_weight
-		    'tca(r,d) = tca(r,d) + l2_weight
-		    'tca(r,j) = tca(r,j) + l2_weight
-		    'tca(r,u) = tca(r,u) + l2_weight
-		    'tca(i,u) = tca(i,u) + l2_weight
-		    'tca(l,u) = tca(l,u) + l2_weight
-		    'tca(l,j) = tca(l,j) + l2_weight
-		    'tca(l,d) = tca(l,d) + l2_weight
-		    'tca(i,d) = tca(i,d) + l2_weight
-		    'tca(r,d) = tca(r,d) + l2_weight
-		    'tca(r,j) = tca(r,j) + l2_weight
-		    'tca(r,u) = tca(r,u) + l2_weight
-		    'tca(i,u) = tca(i,u) + l2_weight
+		    u2 = j - 2
+		    if u2 < 0 then
+		      u2 = u2+y
+		    end
+		    d2 = j + 2
+		    if d2 > y-1 then
+		      d2 = d2-y
+		    end
+		    l2 = i - 2
+		    if l2 < 0 then
+		      l2 = l2+x
+		    end
+		    r2 = i + 2
+		    if r2 > x-1 then
+		      r2 = r2-x
+		    end
+		    tca(l2,u2) = tca(l2,u2) + l2_weight
+		    tca(l2,u) = tca(l2,u) + l2_weight
+		    tca(l2,j) = tca(l2,j) + l2_weight
+		    tca(l2,d) = tca(l2,d) + l2_weight
+		    tca(l2,d2) = tca(l2,d2) + l2_weight
+		    tca(l,d2) = tca(l,d2) + l2_weight
+		    tca(i,d2) = tca(i,d2) + l2_weight
+		    tca(r,d2) = tca(r,d2) + l2_weight
+		    tca(r2,d2) = tca(r2,d2) + l2_weight
+		    tca(r2,d) = tca(r2,d) + l2_weight
+		    tca(r2,j) = tca(r2,j) + l2_weight
+		    tca(r2,u) = tca(r2,u) + l2_weight
+		    tca(r2,u2) = tca(r2,u2) + l2_weight
+		    tca(r,u2) = tca(r,u2) + l2_weight
+		    tca(i,u2) = tca(i,u2) + l2_weight
+		    tca(l,u2) = tca(l,u2) + l2_weight
 		  end
+		  
 		End Sub
 	#tag EndMethod
 
