@@ -332,6 +332,11 @@ End
 		  l2_weight = 0
 		  redim actions(l1_weight * 8 + l2_weight * 16)
 		  load_actions("ddrcddddd")
+		  redim action_list(3)
+		  action_list(0) = "c"
+		  action_list(1) = "r"
+		  action_list(2) = "u"
+		  action_list(3) = "d"
 		  mrcx = 100
 		  mrcy = 100
 		  redim dsa(x,y)
@@ -777,6 +782,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		action_list(-1) As string
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		dsa(-1,-1) As Boolean
 	#tag EndProperty
 
@@ -898,12 +907,19 @@ End
 #tag Events ModeButton
 	#tag Event
 		Sub Action()
+		  dim i as integer
+		  
 		  if ModeLabel.Text = "classic" then
 		    ModeLabel.Text = "2 deep"
-		    l1_weight = 1
-		    l2_weight = 1
+		    l1_weight = app.Randomizer.InRange(0,2)
+		    do
+		      l2_weight = app.Randomizer.InRange(0,2)
+		    loop until l1_weight + l2_weight > 0 and l1_weight + l2_weight < 4
 		    redim actions(l1_weight * 8 + l2_weight * 16)
-		    load_actions("ddddrrrcccddddddddddddddd")
+		    for i = 0 to UBound(actions)
+		      actions(i) = action_list(app.Randomizer.InRange(0,3))
+		    next
+		    MsgBox str(l1_weight)+", "+str(l2_weight)+", "+read_actions
 		  else
 		    ModeLabel.Text = "classic"
 		    l1_weight = 1
