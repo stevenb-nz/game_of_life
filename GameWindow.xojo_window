@@ -900,6 +900,10 @@ End
 		Sub Action()
 		  if ModeLabel.Text = "classic" then
 		    ModeLabel.Text = "2 deep"
+		    l1_weight = 1
+		    l2_weight = 1
+		    redim actions(l1_weight * 8 + l2_weight * 16)
+		    load_actions("ddddrrrcccddddddddddddddd")
 		  else
 		    ModeLabel.Text = "classic"
 		    l1_weight = 1
