@@ -6,6 +6,7 @@ Class=CustomTimer;CustomTimer.xojo_code;&h00000000046367FF;&h0000000000000000;fa
 Window=GameWindow;GameWindow.xojo_window;&h0000000005D5DFFF;&h0000000000000000;false
 MenuBar=MainMenuBar;MainMenuBar.xojo_menu;&h00000000385057FF;&h0000000000000000;false
 BuildSteps=Build Automation;Build Automation.xojo_code;&h0000000069E5B7FF;&h0000000000000000;false
+Window=editModeWindow;editModeWindow.xojo_window;&h000000004F2F8FFF;&h0000000000000000;false
 DefaultWindow=GameWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
