@@ -649,6 +649,7 @@ End
 		  dim i as integer
 		  dim action_string as string
 		  
+		  action_string = input_string
 		  if len(action_string) <> UBound(actions)+1 then
 		    if len(action_string) > UBound(actions)+1 then
 		      action_string = left(action_string,UBound(actions)+1)
@@ -923,7 +924,7 @@ End
 		    l1_weight = app.Randomizer.InRange(0,2)
 		    do
 		      l2_weight = app.Randomizer.InRange(0,2)
-		    loop until l1_weight + l2_weight > 0 and l1_weight + l2_weight < 4
+		    loop until l1_weight =1 or l2_weight = 1
 		    redim actions(l1_weight * 8 + l2_weight * 16)
 		    for i = 0 to UBound(actions)
 		      actions(i) = action_list(app.Randomizer.InRange(0,3))
@@ -944,9 +945,9 @@ End
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  if me.Text = "2 deep" then
 		    'showmodal new edit mode window
-		    MsgBox str(l1_weight)+", "+str(l2_weight)+", "+read_actions
+		    
 		  end
-		  
+		  MsgBox str(l1_weight)+", "+str(l2_weight)+", "+read_actions
 		End Function
 	#tag EndEvent
 #tag EndEvents
