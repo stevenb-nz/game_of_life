@@ -944,10 +944,9 @@ End
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  if me.Text = "2 deep" then
-		    'showmodal new edit mode window
-		    
+		    editModeWindow.ShowModal
 		  end
-		  MsgBox str(l1_weight)+", "+str(l2_weight)+", "+read_actions
+		  
 		End Function
 	#tag EndEvent
 #tag EndEvents
