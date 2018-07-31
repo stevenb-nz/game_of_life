@@ -209,16 +209,77 @@ End
 		    actionslabelstring = actionslabelstring + " " + GameWindow.actions(i)
 		  next
 		  
-		  L1WeightLabel.text = "Level 1 multiplier: "+GameWindow.l1_weight.ToText
-		  L2WeightLabel.text = "Level 2 multiplier: "+GameWindow.l2_weight.ToText
+		  l1 = GameWindow.l1_weight
+		  l2 = GameWindow.l2_weight
+		  L1WeightLabel.text = "Level 1 multiplier: "+l1.ToText
+		  L2WeightLabel.text = "Level 2 multiplier: "+l2.ToText
 		  ActionsLabel.text = actionslabelstring.Uppercase
 		  
 		End Sub
 	#tag EndEvent
 
 
+	#tag Property, Flags = &h0
+		l1 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		l2 As Integer
+	#tag EndProperty
+
+
 #tag EndWindowCode
 
+#tag Events L1WeightLabel
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  select case l1
+		  case 0
+		    l1 = 1
+		  case 1
+		    if l2 = 2 then
+		      l1 = 0
+		    else
+		      l1 = 2
+		    end
+		  case 2
+		    if l2 = 0 then
+		      l1 = 1
+		    else
+		      l1 = 0
+		    end
+		  end select
+		  
+		  L1WeightLabel.text = "Level 1 multiplier: "+str(l1)
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events L2WeightLabel
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  select case l2
+		  case 0
+		    l2 = 1
+		  case 1
+		    if l1 = 2 then
+		      l2 = 0
+		    else
+		      l2 = 2
+		    end
+		  case 2
+		    if l1 = 0 then
+		      l2 = 1
+		    else
+		      l2 = 0
+		    end
+		  end select
+		  
+		  L2WeightLabel.text = "Level 2 multiplier: "+str(l2)
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
 #tag Events OKButton
 	#tag Event
 		Sub Action()
