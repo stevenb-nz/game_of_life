@@ -187,9 +187,12 @@ End
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  dim i as integer
 		  
+		  g.TextSize = 18
+		  g.TextFont = "Courier New"
+		  
 		  for i = 0 to len(temp_actions)
 		    
-		    g.DrawString mid(temp_actions,i+1,1),20+i*22,15
+		    g.DrawString mid(temp_actions,i+1,1).Uppercase,21+i*22,39
 		  next
 		  
 		End Sub
@@ -521,5 +524,10 @@ End
 		Name="l2"
 		Group="Behavior"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="temp_actions"
+		Group="Behavior"
+		Type="String"
 	#tag EndViewProperty
 #tag EndViewBehavior
