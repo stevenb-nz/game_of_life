@@ -204,9 +204,8 @@ End
 		  dim actionslabelstring as string
 		  dim i as integer
 		  
-		  actionslabelstring = GameWindow.actions(0)
-		  for i = 1 to UBound(GameWindow.actions)
-		    actionslabelstring = actionslabelstring + " " + GameWindow.actions(i)
+		  for i = 0 to UBound(GameWindow.actions)
+		    temp_actions = temp_actions + GameWindow.actions(i)
 		  next
 		  
 		  l1 = GameWindow.l1_weight
@@ -225,6 +224,10 @@ End
 
 	#tag Property, Flags = &h0
 		l2 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		temp_actions As String
 	#tag EndProperty
 
 
@@ -530,5 +533,15 @@ End
 		InitialValue="True"
 		Type="Boolean"
 		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="l1"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="l2"
+		Group="Behavior"
+		Type="Integer"
 	#tag EndViewProperty
 #tag EndViewBehavior
