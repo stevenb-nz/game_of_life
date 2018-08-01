@@ -26,41 +26,6 @@ Begin Window editModeWindow
    Title           =   "Edit Mode details"
    Visible         =   True
    Width           =   940
-   Begin Label ActionsLabel
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "C C C C R R R R U U U U D D D D C C C C R R R R U U U U D D D D C C R R U U D D C"
-      TextAlign       =   1
-      TextColor       =   &c00000000
-      TextFont        =   "Courier New"
-      TextSize        =   18.0
-      TextUnit        =   0
-      Top             =   20
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   900
-   End
    Begin Label L1WeightLabel
       AutoDeactivate  =   True
       Bold            =   False
@@ -212,7 +177,20 @@ End
 		  l2 = GameWindow.l2_weight
 		  L1WeightLabel.text = "Level 1 multiplier: "+l1.ToText
 		  L2WeightLabel.text = "Level 2 multiplier: "+l2.ToText
-		  ActionsLabel.text = actionslabelstring.Uppercase
+		  
+		  refresh
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  dim i as integer
+		  
+		  for i = 0 to len(temp_actions)
+		    
+		    g.DrawString mid(temp_actions,i+1,1),20+i*22,15
+		  next
 		  
 		End Sub
 	#tag EndEvent
@@ -294,7 +272,7 @@ End
 		  redim GameWindow.actions(GameWindow.l1_weight * 8 + GameWindow.l2_weight * 16)
 		  
 		  for i = 0 to UBound(GameWindow.actions)
-		    GameWindow.actions(i) = mid(ActionsLabel.text,i*2+1,1).Lowercase
+		    GameWindow.actions(i) = mid(temp_actions,i*2+1,1).Lowercase
 		  next
 		  
 		  self.close
