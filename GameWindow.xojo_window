@@ -387,6 +387,25 @@ End
 
 
 	#tag Method, Flags = &h0
+		Function change_actions_length(input_string as string, length as integer) As String
+		  dim action_string as string
+		  
+		  action_string = input_string
+		  if len(action_string) <> length then
+		    if len(action_string) > length then
+		      action_string = left(action_string,length)
+		    else
+		      for i = 1 to length-len(input_string)
+		        action_string = action_string + action_list(app.Randomizer.InRange(0,3))
+		      next
+		    end
+		  end
+		  return action_string
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub inc_neighbours(i as integer, j as integer)
 		  dim u,d,l,r as integer
 		  
@@ -649,16 +668,7 @@ End
 		  dim i as integer
 		  dim action_string as string
 		  
-		  action_string = input_string
-		  if len(action_string) <> UBound(actions)+1 then
-		    if len(action_string) > UBound(actions)+1 then
-		      action_string = left(action_string,UBound(actions)+1)
-		    else
-		      for i = 0 to UBound(actions)-len(input_string)
-		        action_string = action_string + action_list(app.Randomizer.InRange(0,3))
-		      next
-		    end
-		  end
+		  action_string = change_actions_length(input_string,UBound(actions)+1)
 		  for i = 0 to UBound(actions)
 		    actions(i) = mid(action_string,i+1,1)
 		  next

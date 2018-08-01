@@ -191,7 +191,6 @@ End
 		  g.TextFont = "Courier New"
 		  
 		  for i = 0 to len(temp_actions)
-		    
 		    g.DrawString mid(temp_actions,i+1,1).Uppercase,21+i*22,39
 		  next
 		  
