@@ -388,6 +388,7 @@ End
 
 	#tag Method, Flags = &h0
 		Function change_actions_length(input_string as string, length as integer) As String
+		  dim i as integer
 		  dim action_string as string
 		  
 		  action_string = input_string

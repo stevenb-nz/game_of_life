@@ -235,6 +235,9 @@ End
 		  
 		  L1WeightLabel.text = "Level 1 multiplier: "+str(l1)
 		  
+		  temp_actions = GameWindow.change_actions_length(temp_actions,l1*8+l2*16+1)
+		  refresh
+		  
 		End Function
 	#tag EndEvent
 #tag EndEvents
@@ -260,6 +263,9 @@ End
 		  
 		  L2WeightLabel.text = "Level 2 multiplier: "+str(l2)
 		  
+		  temp_actions = GameWindow.change_actions_length(temp_actions,l1*8+l2*16+1)
+		  refresh
+		  
 		End Function
 	#tag EndEvent
 #tag EndEvents
@@ -274,7 +280,7 @@ End
 		  redim GameWindow.actions(GameWindow.l1_weight * 8 + GameWindow.l2_weight * 16)
 		  
 		  for i = 0 to UBound(GameWindow.actions)
-		    GameWindow.actions(i) = mid(temp_actions,i*2+1,1).Lowercase
+		    GameWindow.actions(i) = mid(temp_actions,i+1,1).Lowercase
 		  next
 		  
 		  self.close
@@ -528,5 +534,6 @@ End
 		Name="temp_actions"
 		Group="Behavior"
 		Type="String"
+		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 #tag EndViewBehavior
