@@ -165,6 +165,18 @@ End
 
 #tag WindowCode
 	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  MsgBox str(x)+","+str(y)
+		  
+		  'y between 27, 39
+		  
+		  'g.DrawString mid(temp_actions,i+1,1).Uppercase,21+i*22,39
+		  
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Sub Open()
 		  dim actionslabelstring as string
 		  dim i as integer
