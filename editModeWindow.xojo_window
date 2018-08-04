@@ -174,7 +174,8 @@ End
 		    if xmod22 > 0 and xmod22 < 13 then
 		      xdiv22 = xminus20 \ 22
 		      if xdiv22 > -1 and xdiv22 < len(temp_actions) then
-		        MsgBox str(xdiv22)
+		        update_action(xdiv22)
+		        refresh
 		      end
 		    end
 		  end
@@ -214,6 +215,23 @@ End
 		  
 		End Sub
 	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Sub update_action(action as integer)
+		  select case mid(temp_actions,action+1,1)
+		  case "d"
+		    temp_actions = left(temp_actions,action)+"r"+right(temp_actions,len(temp_actions)-(action+1))
+		  case "r"
+		    temp_actions = left(temp_actions,action)+"u"+right(temp_actions,len(temp_actions)-(action+1))
+		  case "u"
+		    temp_actions = left(temp_actions,action)+"c"+right(temp_actions,len(temp_actions)-(action+1))
+		  case "c"
+		    temp_actions = left(temp_actions,action)+"d"+right(temp_actions,len(temp_actions)-(action+1))
+		  end select
+		  
+		End Sub
+	#tag EndMethod
 
 
 	#tag Property, Flags = &h0
