@@ -166,12 +166,18 @@ End
 #tag WindowCode
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  MsgBox str(x)+","+str(y)
+		  dim xminus20, xmod22, xdiv22 as integer
 		  
-		  'y between 27, 39
-		  
-		  'g.DrawString mid(temp_actions,i+1,1).Uppercase,21+i*22,39
-		  
+		  xminus20 = x - 20
+		  if y >27 and y < 41 then
+		    xmod22 = xminus20 mod 22
+		    if xmod22 > 0 and xmod22 < 13 then
+		      xdiv22 = xminus20 \ 22
+		      if xdiv22 > -1 and xdiv22 < len(temp_actions) then
+		        MsgBox str(xdiv22)
+		      end
+		    end
+		  end
 		  
 		End Function
 	#tag EndEvent
