@@ -403,7 +403,7 @@ End
 		      action_string = left(action_string,length)
 		    else
 		      for i = 1 to length-len(input_string)
-		        action_string = action_string + action_list(app.Randomizer.InRange(0,3))
+		        action_string = action_string + "d"
 		      next
 		    end
 		  end
