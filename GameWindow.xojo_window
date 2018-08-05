@@ -322,16 +322,22 @@ End
 	#tag Event
 		Sub Open()
 		  dim i,j as integer
+		  dim classic_actions_string as string
 		  
 		  mytimer = new CustomTimer
 		  gens_fstring = "#,###,###"
 		  reset_gens
 		  x = 100
 		  y = 100
+		  classic_actions_string = "ddrcddddd"
 		  l1_weight = 1
 		  l2_weight = 0
+		  l1_weight_classic = 1
+		  l2_weight_classic = 0
 		  redim actions(l1_weight * 8 + l2_weight * 16)
-		  load_actions("ddrcddddd")
+		  redim classic_actions(l1_weight_classic * 8 + l2_weight_classic * 16)
+		  load_actions(classic_actions_string)
+		  load_actions_classic(classic_actions_string)
 		  redim action_list(3)
 		  action_list(0) = "c"
 		  action_list(1) = "r"
@@ -678,7 +684,41 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub load_actions_classic(input_string as String)
+		  dim i as integer
+		  dim action_string as string
+		  
+		  action_string = change_actions_length(input_string,UBound(classic_actions)+1)
+		  for i = 0 to UBound(classic_actions)
+		    classic_actions(i) = mid(action_string,i+1,1)
+		  next
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub next_gen()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      select case classic_actions(tca(i,j))
+		      case "c"
+		        dsa(i,j) = true
+		      case "u"
+		        dsa(i,j) = not dsa(i,j)
+		      case "d"
+		        dsa(i,j) = false
+		      end select
+		      tca(i,j) = 0
+		    next
+		  next
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub next_gen_2d()
 		  dim i,j as integer
 		  
 		  for i = 0 to x-1
@@ -752,7 +792,7 @@ End
 		    next
 		  next
 		  
-		  next_gen
+		  next_gen_2d
 		  
 		End Sub
 	#tag EndMethod
@@ -807,6 +847,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		classic_actions(-1) As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		dsa(-1,-1) As Boolean
 	#tag EndProperty
 
@@ -823,7 +867,15 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		l1_weight_classic As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		l2_weight As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		l2_weight_classic As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -932,20 +984,8 @@ End
 		  
 		  if ModeLabel.Text = "classic" then
 		    ModeLabel.Text = "2 deep"
-		    l1_weight = app.Randomizer.InRange(0,2)
-		    do
-		      l2_weight = app.Randomizer.InRange(0,2)
-		    loop until l1_weight =1 or l2_weight = 1
-		    redim actions(l1_weight * 8 + l2_weight * 16)
-		    for i = 0 to UBound(actions)
-		      actions(i) = action_list(app.Randomizer.InRange(0,3))
-		    next
 		  else
 		    ModeLabel.Text = "classic"
-		    l1_weight = 1
-		    l2_weight = 0
-		    redim actions(l1_weight * 8 + l2_weight * 16)
-		    load_actions("ddrcddddd")
 		  end
 		  
 		End Sub
