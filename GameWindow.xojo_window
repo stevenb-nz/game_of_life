@@ -995,7 +995,7 @@ End
 #tag Events ModeLabel
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  if me.Text = "2 deep" then
+		  if me.Text <> "classic" then
 		    editModeWindow.ShowModal
 		  end
 		  
