@@ -980,13 +980,14 @@ End
 #tag Events ModeButton
 	#tag Event
 		Sub Action()
-		  dim i as integer
-		  
-		  if ModeLabel.Text = "classic" then
-		    ModeLabel.Text = "2 deep"
-		  else
+		  select case ModeLabel.Text
+		  case "2 deep"
 		    ModeLabel.Text = "classic"
-		  end
+		  case "2 layers"
+		    ModeLabel.Text = "2 deep"
+		  case "classic"
+		    ModeLabel.Text = "2 layers"
+		  end select
 		  
 		End Sub
 	#tag EndEvent
@@ -1264,6 +1265,16 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="l2_weight"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="l1_weight_classic"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="l2_weight_classic"
 		Group="Behavior"
 		Type="Integer"
 	#tag EndViewProperty
