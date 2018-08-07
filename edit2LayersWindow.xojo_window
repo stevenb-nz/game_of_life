@@ -26,76 +26,6 @@ Begin Window edit2LayersWindow
    Title           =   "Edit Mode details"
    Visible         =   True
    Width           =   412
-   Begin Label L1WeightLabel
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Level 1 multiplier: 1"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   60
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   141
-   End
-   Begin Label L2WeightLabel
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   185
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Level 2 multiplier: 1"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   60
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   141
-   End
    Begin PushButton OKButton
       AutoDeactivate  =   True
       Bold            =   False
@@ -109,7 +39,7 @@ Begin Window edit2LayersWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   840
+      Left            =   312
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -122,7 +52,7 @@ Begin Window edit2LayersWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   59
+      Top             =   245
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -141,7 +71,7 @@ Begin Window edit2LayersWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   748
+      Left            =   220
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -154,7 +84,7 @@ Begin Window edit2LayersWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   59
+      Top             =   245
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -191,11 +121,6 @@ End
 		  for i = 0 to UBound(GameWindow.actions)
 		    temp_actions = temp_actions + GameWindow.actions(i)
 		  next
-		  
-		  l1 = GameWindow.l1_weight
-		  l2 = GameWindow.l2_weight
-		  L1WeightLabel.text = "Level 1 multiplier: "+l1.ToText
-		  L2WeightLabel.text = "Level 2 multiplier: "+l2.ToText
 		  
 		  refresh
 		  
@@ -235,83 +160,16 @@ End
 
 
 	#tag Property, Flags = &h0
-		l1 As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		l2 As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
 		temp_actions As String
 	#tag EndProperty
 
 
 #tag EndWindowCode
 
-#tag Events L1WeightLabel
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  select case l1
-		  case 0
-		    l1 = 1
-		  case 1
-		    if l2 = 2 then
-		      l1 = 0
-		    else
-		      l1 = 2
-		    end
-		  case 2
-		    if l2 = 0 then
-		      l1 = 1
-		    else
-		      l1 = 0
-		    end
-		  end select
-		  
-		  L1WeightLabel.text = "Level 1 multiplier: "+str(l1)
-		  
-		  temp_actions = GameWindow.change_actions_length(temp_actions,l1*8+l2*16+1)
-		  refresh
-		  
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events L2WeightLabel
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  select case l2
-		  case 0
-		    l2 = 1
-		  case 1
-		    if l1 = 2 then
-		      l2 = 0
-		    else
-		      l2 = 2
-		    end
-		  case 2
-		    if l1 = 0 then
-		      l2 = 1
-		    else
-		      l2 = 0
-		    end
-		  end select
-		  
-		  L2WeightLabel.text = "Level 2 multiplier: "+str(l2)
-		  
-		  temp_actions = GameWindow.change_actions_length(temp_actions,l1*8+l2*16+1)
-		  refresh
-		  
-		End Function
-	#tag EndEvent
-#tag EndEvents
 #tag Events OKButton
 	#tag Event
 		Sub Action()
 		  dim i as integer
-		  
-		  GameWindow.l1_weight = val(right(L1WeightLabel.text,1))
-		  GameWindow.l2_weight = val(right(L2WeightLabel.text,1))
 		  
 		  redim GameWindow.actions(GameWindow.l1_weight * 8 + GameWindow.l2_weight * 16)
 		  
