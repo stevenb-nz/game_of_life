@@ -995,9 +995,13 @@ End
 #tag Events ModeLabel
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  if me.Text <> "classic" then
-		    editModeWindow.ShowModal
-		  end
+		  select case me.Text
+		  case "2 deep"
+		    edit2deepWindow.ShowModal
+		  case "2 layers"
+		    edit2layersWindow.ShowModal
+		  case "classic"
+		  end select
 		  
 		End Function
 	#tag EndEvent

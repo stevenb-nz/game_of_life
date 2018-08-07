@@ -1,5 +1,5 @@
 #tag Window
-Begin Window editModeWindow
+Begin Window edit2LayersWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -9,7 +9,7 @@ Begin Window editModeWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   101
+   Height          =   285
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -25,7 +25,7 @@ Begin Window editModeWindow
    Resizeable      =   True
    Title           =   "Edit Mode details"
    Visible         =   True
-   Width           =   940
+   Width           =   412
    Begin Label L1WeightLabel
       AutoDeactivate  =   True
       Bold            =   False
