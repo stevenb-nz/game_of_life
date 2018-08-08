@@ -348,10 +348,13 @@ End
 		  mrcy = 100
 		  redim dsa(x,y)
 		  redim tca(x,y)
+		  redim tcal(x,y,1)
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
 		      tca(i,j) = 0
+		      tcal(i,j,0) = 0
+		      tcal(i,j,1) = 0
 		      dsa(i,j) = false
 		    next
 		  next
@@ -699,12 +702,14 @@ End
 
 	#tag Method, Flags = &h0
 		Sub load_actions_layered(input_string as String)
-		  dim i as integer
+		  dim i,j as integer
 		  dim action_string as string
 		  
 		  action_string = change_actions_length(input_string,UBound(classic_actions)+1)
 		  for i = 0 to UBound(classic_actions)
-		    classic_actions(i) = mid(action_string,i+1,1)
+		    for j = 0 to 16
+		      layered_actions(i,j) = mid(action_string,i+1,1)
+		    next
 		  next
 		  
 		End Sub
@@ -910,6 +915,10 @@ End
 
 	#tag Property, Flags = &h0
 		tca(-1,-1) As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		tcal(-1,-1,1) As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
