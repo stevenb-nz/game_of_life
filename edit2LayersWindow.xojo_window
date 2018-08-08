@@ -160,7 +160,7 @@ End
 
 
 	#tag Property, Flags = &h0
-		temp_actions As String
+		temp_actions(8,16) As String
 	#tag EndProperty
 
 
@@ -415,17 +415,7 @@ End
 		EditorType="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="l1"
-		Group="Behavior"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="l2"
-		Group="Behavior"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="temp_actions"
+		Name="temp_actions(8,16)"
 		Group="Behavior"
 		Type="String"
 		EditorType="MultiLineEditor"
