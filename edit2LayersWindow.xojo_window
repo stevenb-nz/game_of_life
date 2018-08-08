@@ -103,10 +103,10 @@ End
 		    xmod22 = xminus20 mod 22
 		    if xmod22 > 0 and xmod22 < 13 then
 		      xdiv22 = xminus20 \ 22
-		      if xdiv22 > -1 and xdiv22 < len(temp_actions) then
-		        update_action(xdiv22)
-		        refresh
-		      end
+		      'if xdiv22 > -1 and xdiv22 < len(temp_actions) then
+		      'update_action(xdiv22)
+		      'refresh
+		      'end
 		    end
 		  end
 		  
@@ -115,11 +115,12 @@ End
 
 	#tag Event
 		Sub Open()
-		  dim actionslabelstring as string
-		  dim i as integer
+		  dim i,j as integer
 		  
-		  for i = 0 to UBound(GameWindow.actions)
-		    temp_actions = temp_actions + GameWindow.actions(i)
+		  for i = 0 to 8
+		    for j = 0 to 16
+		      temp_actions(i,j) = GameWindow.layered_actions(i,j)
+		    next
 		  next
 		  
 		  refresh
@@ -129,13 +130,15 @@ End
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  dim i as integer
+		  dim i,j as integer
 		  
 		  g.TextSize = 18
 		  g.TextFont = "Courier New"
 		  
-		  for i = 0 to len(temp_actions)
-		    g.DrawString mid(temp_actions,i+1,1).Uppercase,21+i*22,39
+		  for i = 0 to 8
+		    for j = 0 to 16
+		      g.DrawString temp_actions(i,j).Uppercase,21+i*22,39+j*22
+		    next
 		  next
 		  
 		End Sub
@@ -143,17 +146,17 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub update_action(action as integer)
-		  select case mid(temp_actions,action+1,1)
-		  case "d"
-		    temp_actions = left(temp_actions,action)+"r"+right(temp_actions,len(temp_actions)-(action+1))
-		  case "r"
-		    temp_actions = left(temp_actions,action)+"u"+right(temp_actions,len(temp_actions)-(action+1))
-		  case "u"
-		    temp_actions = left(temp_actions,action)+"c"+right(temp_actions,len(temp_actions)-(action+1))
-		  case "c"
-		    temp_actions = left(temp_actions,action)+"d"+right(temp_actions,len(temp_actions)-(action+1))
-		  end select
+		Sub update_action(l1 as integer,l2 as integer)
+		  'select case temp_actions(l1,l2)
+		  'case "d"
+		  'temp_actions = left(temp_actions,action)+"r"+right(temp_actions,len(temp_actions)-(action+1))
+		  'case "r"
+		  'temp_actions = left(temp_actions,action)+"u"+right(temp_actions,len(temp_actions)-(action+1))
+		  'case "u"
+		  'temp_actions = left(temp_actions,action)+"c"+right(temp_actions,len(temp_actions)-(action+1))
+		  'case "c"
+		  'temp_actions = left(temp_actions,action)+"d"+right(temp_actions,len(temp_actions)-(action+1))
+		  'end select
 		  
 		End Sub
 	#tag EndMethod
@@ -174,7 +177,7 @@ End
 		  redim GameWindow.actions(GameWindow.l1_weight * 8 + GameWindow.l2_weight * 16)
 		  
 		  for i = 0 to UBound(GameWindow.actions)
-		    GameWindow.actions(i) = mid(temp_actions,i+1,1).Lowercase
+		    'GameWindow.actions(i) = mid(temp_actions,i+1,1).Lowercase
 		  next
 		  
 		  self.close
@@ -413,11 +416,5 @@ End
 		InitialValue="True"
 		Type="Boolean"
 		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="temp_actions(8,16)"
-		Group="Behavior"
-		Type="String"
-		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 #tag EndViewBehavior

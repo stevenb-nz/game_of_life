@@ -185,7 +185,6 @@ End
 
 	#tag Event
 		Sub Open()
-		  dim actionslabelstring as string
 		  dim i as integer
 		  
 		  for i = 0 to UBound(GameWindow.actions)

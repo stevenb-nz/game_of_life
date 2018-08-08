@@ -507,6 +507,71 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub inc_neighbours_2l(i as integer, j as integer)
+		  dim u,d,l,r,u2,d2,l2,r2 as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = u+y
+		  end
+		  d = j + 1
+		  if d > y-1 then
+		    d = d-y
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = l+x
+		  end
+		  r = i + 1
+		  if r > x-1 then
+		    r = r-x
+		  end
+		  tcal(l,u,0) = tcal(l,u,0) + 1
+		  tcal(l,j,0) = tcal(l,j,0) + 1
+		  tcal(l,d,0) = tcal(l,d,0) + 1
+		  tcal(i,d,0) = tcal(i,d,0) + 1
+		  tcal(r,d,0) = tcal(r,d,0) + 1
+		  tcal(r,j,0) = tcal(r,j,0) + 1
+		  tcal(r,u,0) = tcal(r,u,0) + 1
+		  tcal(i,u,0) = tcal(i,u,0) + 1
+		  
+		  u2 = j - 2
+		  if u2 < 0 then
+		    u2 = u2+y
+		  end
+		  d2 = j + 2
+		  if d2 > y-1 then
+		    d2 = d2-y
+		  end
+		  l2 = i - 2
+		  if l2 < 0 then
+		    l2 = l2+x
+		  end
+		  r2 = i + 2
+		  if r2 > x-1 then
+		    r2 = r2-x
+		  end
+		  tcal(l2,u2,1) = tcal(l2,u2,1) + 1
+		  tcal(l2,u,1) = tcal(l2,u,1) + 1
+		  tcal(l2,j,1) = tcal(l2,j,1) + 1
+		  tcal(l2,d,1) = tcal(l2,d,1) + 1
+		  tcal(l2,d2,1) = tcal(l2,d2,1) + 1
+		  tcal(l,d2,1) = tcal(l,d2,1) + 1
+		  tcal(i,d2,1) = tcal(i,d2,1) + 1
+		  tcal(r,d2,1) = tcal(r,d2,1) + 1
+		  tcal(r2,d2,1) = tcal(r2,d2,1) + 1
+		  tcal(r2,d,1) = tcal(r2,d,1) + 1
+		  tcal(r2,j,1) = tcal(r2,j,1) + 1
+		  tcal(r2,u,1) = tcal(r2,u,1) + 1
+		  tcal(r2,u2,1) = tcal(r2,u2,1) + 1
+		  tcal(r,u2,1) = tcal(r,u2,1) + 1
+		  tcal(i,u2,1) = tcal(i,u2,1) + 1
+		  tcal(l,u2,1) = tcal(l,u2,1) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub inc_neighbours_b(i as integer, j as integer)
 		  dim u,d,l,r as integer
 		  
@@ -758,6 +823,28 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub next_gen_2l()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      select case layered_actions(tcal(i,j,0),tcal(i,j,1))
+		      case "c"
+		        dsa(i,j) = true
+		      case "u"
+		        dsa(i,j) = not dsa(i,j)
+		      case "d"
+		        dsa(i,j) = false
+		      end select
+		      tcal(i,j,0) = 0
+		      tcal(i,j,1) = 0
+		    next
+		  next
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub one_step()
 		  dim i,j as integer
 		  
@@ -812,6 +899,23 @@ End
 		  next
 		  
 		  next_gen_2d
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub one_step_2l()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      if dsa(i,j) then
+		        inc_neighbours_2l(i,j)
+		      end
+		    next
+		  next
+		  
+		  next_gen_2l
 		  
 		End Sub
 	#tag EndMethod
