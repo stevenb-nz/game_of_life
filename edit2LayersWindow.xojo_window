@@ -137,7 +137,7 @@ End
 		  
 		  for i = 0 to 8
 		    for j = 0 to 16
-		      g.DrawString temp_actions(i,j).Uppercase,21+i*22,39+j*22
+		      g.DrawString temp_actions(i,j).Uppercase,21+j*22,39+i*22
 		    next
 		  next
 		  
