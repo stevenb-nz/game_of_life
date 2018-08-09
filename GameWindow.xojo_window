@@ -1081,11 +1081,14 @@ End
 #tag Events StepButton
 	#tag Event
 		Sub Action()
-		  if ModeLabel.Text = "classic" then
-		    one_step
-		  else
+		  select case ModeLabel.Text
+		  case "2 deep"
 		    one_step_2d
-		  end
+		  case "2 layers"
+		    one_step_2l
+		  case "classic"
+		    one_step
+		  end select
 		  generations = generations+1
 		  GenCountLabel.Text = Str(generations,gens_fstring)
 		  Refresh

@@ -96,17 +96,22 @@ End
 #tag WindowCode
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim xminus20, xmod22, xdiv22 as integer
+		  dim xminus22, xmod22, xdiv22, yminus25, ymod24, ydiv24 as integer
 		  
-		  xminus20 = x - 20
-		  if y >27 and y < 41 then
-		    xmod22 = xminus20 mod 22
-		    if xmod22 > 0 and xmod22 < 13 then
-		      xdiv22 = xminus20 \ 22
-		      'if xdiv22 > -1 and xdiv22 < len(temp_actions) then
-		      'update_action(xdiv22)
-		      'refresh
-		      'end
+		  xminus22 = x - 22
+		  xmod22 = xminus22 mod 22
+		  if xmod22 > 0 and xmod22 < 13 then
+		    xdiv22 = xminus22 \ 22
+		    if xdiv22 > -1 and xdiv22 < 17 then
+		      yminus25 = y - 25
+		      ymod24 = yminus25 mod 24
+		      if ymod24 > 0 and ymod24 < 14 then
+		        ydiv24 = yminus25 \ 24
+		        if ydiv24 > -1 and ydiv24 < 9 then
+		          update_action(xdiv22,ydiv24)
+		          refresh
+		        end
+		      end
 		    end
 		  end
 		  
@@ -146,17 +151,17 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub update_action(l1 as integer,l2 as integer)
-		  'select case temp_actions(l1,l2)
-		  'case "d"
-		  'temp_actions = left(temp_actions,action)+"r"+right(temp_actions,len(temp_actions)-(action+1))
-		  'case "r"
-		  'temp_actions = left(temp_actions,action)+"u"+right(temp_actions,len(temp_actions)-(action+1))
-		  'case "u"
-		  'temp_actions = left(temp_actions,action)+"c"+right(temp_actions,len(temp_actions)-(action+1))
-		  'case "c"
-		  'temp_actions = left(temp_actions,action)+"d"+right(temp_actions,len(temp_actions)-(action+1))
-		  'end select
+		Sub update_action(l2 as integer,l1 as integer)
+		  select case temp_actions(l1,l2)
+		  case "d"
+		    temp_actions(l1,l2) = "r"
+		  case "r"
+		    temp_actions(l1,l2) = "u"
+		  case "u"
+		    temp_actions(l1,l2) = "c"
+		  case "c"
+		    temp_actions(l1,l2) = "d"
+		  end select
 		  
 		End Sub
 	#tag EndMethod
@@ -172,12 +177,12 @@ End
 #tag Events OKButton
 	#tag Event
 		Sub Action()
-		  dim i as integer
+		  dim i,j as integer
 		  
-		  redim GameWindow.actions(GameWindow.l1_weight * 8 + GameWindow.l2_weight * 16)
-		  
-		  for i = 0 to UBound(GameWindow.actions)
-		    'GameWindow.actions(i) = mid(temp_actions,i+1,1).Lowercase
+		  for i = 0 to 8
+		    for j = 0 to 16
+		      GameWindow.layered_actions(i,j) = temp_actions(i,j)
+		    next
 		  next
 		  
 		  self.close

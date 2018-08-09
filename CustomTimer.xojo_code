@@ -3,11 +3,14 @@ Protected Class CustomTimer
 Inherits Timer
 	#tag Event
 		Sub Action()
-		  if GameWindow.ModeLabel.Text = "classic" then
-		    GameWindow.one_step
-		  else
+		  select case GameWindow.ModeLabel.Text
+		  case "2 deep"
 		    GameWindow.one_step_2d
-		  end
+		  case "2 layers"
+		    GameWindow.one_step_2l
+		  case "classic"
+		    GameWindow.one_step
+		  end select
 		  GameWindow.generations = GameWindow.generations+1
 		  GameWindow.GenCountLabel.Text = Str(GameWindow.generations,GameWindow.gens_fstring)
 		  GameWindow.Refresh
