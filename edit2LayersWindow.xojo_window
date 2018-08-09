@@ -9,7 +9,7 @@ Begin Window edit2LayersWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   285
+   Height          =   294
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -52,7 +52,7 @@ Begin Window edit2LayersWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   245
+      Top             =   254
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -84,7 +84,7 @@ Begin Window edit2LayersWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   245
+      Top             =   254
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -137,7 +137,7 @@ End
 		  
 		  for i = 0 to 8
 		    for j = 0 to 16
-		      g.DrawString temp_actions(i,j).Uppercase,21+j*22,39+i*22
+		      g.DrawString temp_actions(i,j).Uppercase,23+j*22,37+i*24
 		    next
 		  next
 		  
