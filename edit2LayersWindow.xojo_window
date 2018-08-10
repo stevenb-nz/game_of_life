@@ -90,6 +90,38 @@ Begin Window edit2LayersWindow
       Visible         =   True
       Width           =   80
    End
+   Begin PushButton RandomButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   True
+      Caption         =   "Random"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   254
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
@@ -194,6 +226,31 @@ End
 	#tag Event
 		Sub Action()
 		  self.close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events RandomButton
+	#tag Event
+		Sub Action()
+		  dim i,j as integer
+		  
+		  for i = 0 to 8
+		    for j = 0 to 16
+		      select case app.Randomizer.InRange(1,45)
+		      case 1 to 4
+		        temp_actions(i,j) = "c"
+		      case 5 to 8
+		        temp_actions(i,j) = "r"
+		      case 9 to 10
+		        temp_actions(i,j) = "u"
+		      else
+		        temp_actions(i,j) = "d"
+		      end
+		    next
+		  next
+		  
+		  Refresh
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
