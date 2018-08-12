@@ -1119,8 +1119,10 @@ End
 		    ModeLabel.Text = "classic"
 		  case "2 layers"
 		    ModeLabel.Text = "2 deep"
-		  case "classic"
+		  case "split level"
 		    ModeLabel.Text = "2 layers"
+		  case "classic"
+		    ModeLabel.Text = "split level"
 		  end select
 		  
 		End Sub
