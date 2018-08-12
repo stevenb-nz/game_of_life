@@ -1086,6 +1086,8 @@ End
 		    one_step_2d
 		  case "2 layers"
 		    one_step_2l
+		  case "split level"
+		    'one_step_sl
 		  case "classic"
 		    one_step
 		  end select
@@ -1136,6 +1138,8 @@ End
 		    edit2deepWindow.ShowModal
 		  case "2 layers"
 		    edit2layersWindow.ShowModal
+		  case "split level"
+		    'editSplitLevelWindow.ShowModal
 		  case "classic"
 		  end select
 		  

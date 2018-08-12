@@ -8,6 +8,8 @@ Inherits Timer
 		    GameWindow.one_step_2d
 		  case "2 layers"
 		    GameWindow.one_step_2l
+		  case "split level"
+		    'GameWindow.one_step_sl
 		  case "classic"
 		    GameWindow.one_step
 		  end select
