@@ -8,6 +8,7 @@ MenuBar=MainMenuBar;MainMenuBar.xojo_menu;&h00000000385057FF;&h0000000000000000;
 BuildSteps=Build Automation;Build Automation.xojo_code;&h0000000069E5B7FF;&h0000000000000000;false
 Window=edit2DeepWindow;edit2DeepWindow.xojo_window;&h000000004F2F8FFF;&h0000000000000000;false
 Window=edit2LayersWindow;edit2LayersWindow.xojo_window;&h000000004EB3CFFF;&h0000000000000000;false
+Window=editSplitLevelWindow;editSplitLevelWindow.xojo_window;&h000000006766F7FF;&h0000000000000000;false
 DefaultWindow=GameWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
