@@ -160,19 +160,19 @@ End
 #tag WindowCode
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim xminus22, xmod22, xdiv22, yminus25, ymod24, ydiv24 as integer
+		  dim xminus27, xmod36, xdiv36, yminus25, ymod25, ydiv25 as integer
 		  
-		  xminus22 = x - 22
-		  xmod22 = xminus22 mod 22
-		  if xmod22 > 0 and xmod22 < 13 then
-		    xdiv22 = xminus22 \ 22
-		    if xdiv22 > -1 and xdiv22 < 5 then
+		  xminus27 = x - 27
+		  xmod36 = xminus27 mod 36
+		  if xmod36 > 0 and xmod36 < 13 then
+		    xdiv36 = xminus27 \ 36
+		    if xdiv36 > -1 and xdiv36 < 5 then
 		      yminus25 = y - 25
-		      ymod24 = yminus25 mod 24
-		      if ymod24 > 0 and ymod24 < 14 then
-		        ydiv24 = yminus25 \ 24
-		        if ydiv24 > -1 and ydiv24 < 5 then
-		          update_action(xdiv22,ydiv24)
+		      ymod25 = yminus25 mod 25
+		      if ymod25 > 0 and ymod25 < 14 then
+		        ydiv25 = yminus25 \ 25
+		        if ydiv25 > -1 and ydiv25 < 5 then
+		          update_action(xdiv36,ydiv25)
 		          refresh
 		        end
 		      end
@@ -206,7 +206,7 @@ End
 		  
 		  for i = 0 to 4
 		    for j = 0 to 4
-		      g.DrawString temp_actions(i,j).Uppercase,23+j*22,37+i*24
+		      g.DrawString temp_actions(i,j).Uppercase,28+j*36,37+i*25
 		    next
 		  next
 		  
