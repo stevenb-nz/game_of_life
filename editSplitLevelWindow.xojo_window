@@ -9,7 +9,7 @@ Begin Window editSplitLevelWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   294
+   Height          =   230
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -25,7 +25,7 @@ Begin Window editSplitLevelWindow
    Resizeable      =   True
    Title           =   "Edit Mode details"
    Visible         =   True
-   Width           =   412
+   Width           =   212
    Begin PushButton OKButton
       AutoDeactivate  =   True
       Bold            =   False
@@ -39,7 +39,7 @@ Begin Window editSplitLevelWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   312
+      Left            =   112
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -52,7 +52,7 @@ Begin Window editSplitLevelWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   254
+      Top             =   190
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -71,7 +71,7 @@ Begin Window editSplitLevelWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   220
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -84,7 +84,7 @@ Begin Window editSplitLevelWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   254
+      Top             =   190
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -116,7 +116,7 @@ Begin Window editSplitLevelWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   254
+      Top             =   158
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -148,7 +148,7 @@ Begin Window editSplitLevelWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   254
+      Top             =   158
       Transparent     =   False
       Underline       =   False
       Visible         =   True

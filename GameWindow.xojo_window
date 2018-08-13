@@ -1139,7 +1139,7 @@ End
 		  case "2 layers"
 		    edit2layersWindow.ShowModal
 		  case "split level"
-		    'editSplitLevelWindow.ShowModal
+		    editSplitLevelWindow.ShowModal
 		  case "classic"
 		  end select
 		  
