@@ -188,7 +188,7 @@ End
 		  
 		  for i = 0 to 4
 		    for j = 0 to 4
-		      temp_actions(i,j) = GameWindow.layered_actions(i,j)
+		      temp_actions(i,j) = GameWindow.split_level_actions(i,j)
 		    next
 		  next
 		  
@@ -245,7 +245,7 @@ End
 		  
 		  for i = 0 to 4
 		    for j = 0 to 4
-		      GameWindow.layered_actions(i,j) = temp_actions(i,j)
+		      GameWindow.split_level_actions(i,j) = temp_actions(i,j)
 		    next
 		  next
 		  
@@ -268,12 +268,12 @@ End
 		  
 		  for i = 0 to 4
 		    for j = 0 to 4
-		      select case app.Randomizer.InRange(1,45)
-		      case 1 to 4
+		      select case app.Randomizer.InRange(1,40)
+		      case 1 to 10
 		        temp_actions(i,j) = "c"
-		      case 5 to 8
+		      case 11 to 18
 		        temp_actions(i,j) = "r"
-		      case 9 to 10
+		      case 19 to 20
 		        temp_actions(i,j) = "u"
 		      else
 		        temp_actions(i,j) = "d"

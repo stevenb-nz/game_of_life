@@ -339,6 +339,7 @@ End
 		  load_actions(classic_actions_string)
 		  load_actions_classic(classic_actions_string)
 		  load_actions_layered(classic_actions_string)
+		  load_actions_split_level(classic_actions_string)
 		  redim action_list(3)
 		  action_list(0) = "c"
 		  action_list(1) = "r"
@@ -677,6 +678,38 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub inc_neighbours_sl(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = u+y
+		  end
+		  d = j + 1
+		  if d > y-1 then
+		    d = d-y
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = l+x
+		  end
+		  r = i + 1
+		  if r > x-1 then
+		    r = r-x
+		  end
+		  tcal(l,u,1) = tcal(l,u,1) + 1
+		  tcal(l,j,0) = tcal(l,j,0) + 1
+		  tcal(l,d,1) = tcal(l,d,1) + 1
+		  tcal(i,d,0) = tcal(i,d,0) + 1
+		  tcal(r,d,1) = tcal(r,d,1) + 1
+		  tcal(r,j,0) = tcal(r,j,0) + 1
+		  tcal(r,u,1) = tcal(r,u,1) + 1
+		  tcal(i,u,0) = tcal(i,u,0) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub inc_neighbours_t(i as integer, j as integer)
 		  dim u,d,l,r as integer
 		  
@@ -781,6 +814,21 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub load_actions_split_level(input_string as String)
+		  dim i,j as integer
+		  dim action_string as string
+		  
+		  action_string = change_actions_length(input_string,UBound(classic_actions)+1)
+		  for i = 0 to 4
+		    for j = 0 to 4
+		      split_level_actions(i,j) = mid(action_string,i+j+1,1)
+		    next
+		  next
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub next_gen()
 		  dim i,j as integer
 		  
@@ -829,6 +877,28 @@ End
 		  for i = 0 to x-1
 		    for j = 0 to y-1
 		      select case layered_actions(tcal(i,j,0),tcal(i,j,1))
+		      case "c"
+		        dsa(i,j) = true
+		      case "u"
+		        dsa(i,j) = not dsa(i,j)
+		      case "d"
+		        dsa(i,j) = false
+		      end select
+		      tcal(i,j,0) = 0
+		      tcal(i,j,1) = 0
+		    next
+		  next
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub next_gen_sl()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      select case split_level_actions(tcal(i,j,0),tcal(i,j,1))
 		      case "c"
 		        dsa(i,j) = true
 		      case "u"
@@ -916,6 +986,23 @@ End
 		  next
 		  
 		  next_gen_2l
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub one_step_sl()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      if dsa(i,j) then
+		        inc_neighbours_sl(i,j)
+		      end
+		    next
+		  next
+		  
+		  next_gen_sl
 		  
 		End Sub
 	#tag EndMethod
@@ -1018,6 +1105,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		split_level_actions(4,4) As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		tca(-1,-1) As Integer
 	#tag EndProperty
 
@@ -1087,7 +1178,7 @@ End
 		  case "2 layers"
 		    one_step_2l
 		  case "split level"
-		    'one_step_sl
+		    one_step_sl
 		  case "classic"
 		    one_step
 		  end select

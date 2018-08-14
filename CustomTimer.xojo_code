@@ -9,7 +9,7 @@ Inherits Timer
 		  case "2 layers"
 		    GameWindow.one_step_2l
 		  case "split level"
-		    'GameWindow.one_step_sl
+		    GameWindow.one_step_sl
 		  case "classic"
 		    GameWindow.one_step
 		  end select
