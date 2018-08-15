@@ -1179,6 +1179,8 @@ End
 		    one_step_2l
 		  case "split level"
 		    one_step_sl
+		  case "split 3 level"
+		    one_step_s3l
 		  case "classic"
 		    one_step
 		  end select
