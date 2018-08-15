@@ -1214,8 +1214,10 @@ End
 		    ModeLabel.Text = "2 deep"
 		  case "split level"
 		    ModeLabel.Text = "2 layers"
-		  case "classic"
+		  case "split 3 level"  
 		    ModeLabel.Text = "split level"
+		  case "classic"
+		    ModeLabel.Text = "split 3 level"
 		  end select
 		  
 		End Sub
@@ -1231,6 +1233,8 @@ End
 		    edit2layersWindow.ShowModal
 		  case "split level"
 		    editSplitLevelWindow.ShowModal
+		  case "split 3 level"
+		    editSplit3LevelWindow.ShowModal
 		  case "classic"
 		  end select
 		  
