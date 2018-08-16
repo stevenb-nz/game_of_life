@@ -816,6 +816,23 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub load_actions_split_3_level(input_string as String)
+		  dim i,j,k as integer
+		  dim action_string as string
+		  
+		  action_string = change_actions_length(input_string,UBound(classic_actions)+1)
+		  for i = 0 to 4
+		    for j = 0 to 4
+		      for k = 0 to 4
+		        split_3_level_actions(i,j,k) = mid(action_string,i+(j mod 5)+1,1)
+		      next
+		    next
+		  next
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub load_actions_split_level(input_string as String)
 		  dim i,j as integer
 		  dim action_string as string
