@@ -340,6 +340,7 @@ End
 		  load_actions_classic(classic_actions_string)
 		  load_actions_layered(classic_actions_string)
 		  load_actions_split_level(classic_actions_string)
+		  load_actions_split_3_level(classic_actions_string)
 		  redim action_list(3)
 		  action_list(0) = "c"
 		  action_list(1) = "r"
@@ -350,6 +351,7 @@ End
 		  redim dsa(x,y)
 		  redim tca(x,y)
 		  redim tcal(x,y,1)
+		  redim tca3l(x,y,2)
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
@@ -1105,11 +1107,19 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		split_3_level_actions(4,4,4) As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		split_level_actions(4,4) As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		tca(-1,-1) As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		tca3l(-1,-1,2) As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
