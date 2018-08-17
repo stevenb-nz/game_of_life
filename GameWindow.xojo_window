@@ -806,9 +806,9 @@ End
 		  dim action_string as string
 		  
 		  action_string = change_actions_length(input_string,UBound(classic_actions)+1)
-		  for i = 0 to UBound(classic_actions)
-		    for j = 0 to 16
-		      layered_actions(i,j) = mid(action_string,i+1,1)
+		  for i = 0 to 16
+		    for j = 0 to UBound(classic_actions)
+		      layered_actions(i,j) = mid(action_string,j+1,1)
 		    next
 		  next
 		  
@@ -895,7 +895,7 @@ End
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
-		      select case layered_actions(tcal(i,j,0),tcal(i,j,1))
+		      select case layered_actions(tcal(i,j,1),tcal(i,j,0))
 		      case "c"
 		        dsa(i,j) = true
 		      case "u"
@@ -1125,7 +1125,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		layered_actions(8,16) As String
+		layered_actions(16,8) As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

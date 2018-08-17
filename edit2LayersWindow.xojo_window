@@ -186,8 +186,8 @@ End
 		Sub Open()
 		  dim i,j as integer
 		  
-		  for i = 0 to 8
-		    for j = 0 to 16
+		  for i = 0 to 16
+		    for j = 0 to 8
 		      temp_actions(i,j) = GameWindow.layered_actions(i,j)
 		    next
 		  next
@@ -204,9 +204,9 @@ End
 		  g.TextSize = 18
 		  g.TextFont = "Courier New"
 		  
-		  for i = 0 to 8
-		    for j = 0 to 16
-		      g.DrawString temp_actions(i,j).Uppercase,23+j*22,37+i*24
+		  for i = 0 to 16
+		    for j = 0 to 8
+		      g.DrawString temp_actions(i,j).Uppercase,23+i*22,37+j*24
 		    next
 		  next
 		  
@@ -215,7 +215,7 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub update_action(l2 as integer,l1 as integer)
+		Sub update_action(l1 as integer, l2 as integer)
 		  select case temp_actions(l1,l2)
 		  case "d"
 		    temp_actions(l1,l2) = "r"
@@ -232,7 +232,7 @@ End
 
 
 	#tag Property, Flags = &h0
-		temp_actions(8,16) As String
+		temp_actions(16,8) As String
 	#tag EndProperty
 
 
@@ -243,8 +243,8 @@ End
 		Sub Action()
 		  dim i,j as integer
 		  
-		  for i = 0 to 8
-		    for j = 0 to 16
+		  for i = 0 to 16
+		    for j = 0 to 8
 		      GameWindow.layered_actions(i,j) = temp_actions(i,j)
 		    next
 		  next
@@ -266,8 +266,8 @@ End
 		Sub Action()
 		  dim i,j as integer
 		  
-		  for i = 0 to 8
-		    for j = 0 to 16
+		  for i = 0 to 16
+		    for j = 0 to 8
 		      select case app.Randomizer.InRange(1,45)
 		      case 1 to 4
 		        temp_actions(i,j) = "c"
@@ -291,9 +291,9 @@ End
 		Sub Action()
 		  dim i,j as integer
 		  
-		  for i = 0 to 8
-		    for j = 0 to 16
-		      select case i
+		  for i = 0 to 16
+		    for j = 0 to 8
+		      select case j
 		      case 2
 		        temp_actions(i,j) = "r"
 		      case 3
