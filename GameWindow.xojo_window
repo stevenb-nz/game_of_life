@@ -680,6 +680,58 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub inc_neighbours_s3l(i as integer, j as integer)
+		  dim u,u2,d,d2,l,l2,r,r2 as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = u+y
+		  end
+		  d = j + 1
+		  if d > y-1 then
+		    d = d-y
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = l+x
+		  end
+		  r = i + 1
+		  if r > x-1 then
+		    r = r-x
+		  end
+		  u2 = j - 2
+		  if u2 < 0 then
+		    u2 = u2+y
+		  end
+		  d2 = j + 2
+		  if d2 > y-1 then
+		    d2 = d2-y
+		  end
+		  l2 = i - 2
+		  if l2 < 0 then
+		    l2 = l2+x
+		  end
+		  r2 = i + 2
+		  if r2 > x-1 then
+		    r2 = r2-x
+		  end
+		  tca3l(l,u,1) = tca3l(l,u,1) + 1
+		  tca3l(l,j,0) = tca3l(l,j,0) + 1
+		  tca3l(l2,j,2) = tca3l(l2,j,2) + 1
+		  tca3l(l,d,1) = tca3l(l,d,1) + 1
+		  tca3l(i,d,0) = tca3l(i,d,0) + 1
+		  tca3l(i,d2,2) = tca3l(i,d2,2) + 1
+		  tca3l(r,d,1) = tca3l(r,d,1) + 1
+		  tca3l(r,j,0) = tca3l(r,j,0) + 1
+		  tca3l(r2,j,2) = tca3l(r2,j,2) + 1
+		  tca3l(r,u,1) = tca3l(r,u,1) + 1
+		  tca3l(i,u,0) = tca3l(i,u,0) + 1
+		  tca3l(i,u2,2) = tca3l(i,u2,2) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub inc_neighbours_sl(i as integer, j as integer)
 		  dim u,d,l,r as integer
 		  
@@ -912,6 +964,29 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub next_gen_s3l()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      select case split_3_level_actions(tca3l(i,j,0),tca3l(i,j,1),tca3l(i,j,2))
+		      case "c"
+		        dsa(i,j) = true
+		      case "u"
+		        dsa(i,j) = not dsa(i,j)
+		      case "d"
+		        dsa(i,j) = false
+		      end select
+		      tca3l(i,j,0) = 0
+		      tca3l(i,j,1) = 0
+		      tca3l(i,j,2) = 0
+		    next
+		  next
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub next_gen_sl()
 		  dim i,j as integer
 		  
@@ -1011,17 +1086,17 @@ End
 
 	#tag Method, Flags = &h0
 		Sub one_step_s3l()
-		  'dim i,j as integer
-		  '
-		  'for i = 0 to x-1
-		  'for j = 0 to y-1
-		  'if dsa(i,j) then
-		  'inc_neighbours_sl(i,j)
-		  'end
-		  'next
-		  'next
-		  '
-		  'next_gen_sl
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      if dsa(i,j) then
+		        inc_neighbours_s3l(i,j)
+		      end
+		    next
+		  next
+		  
+		  next_gen_s3l
 		  
 		End Sub
 	#tag EndMethod
