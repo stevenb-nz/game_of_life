@@ -160,20 +160,24 @@ End
 #tag WindowCode
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim xminus23, xmod22, xdiv22, yminus25, ymod24, ydiv24 as integer
+		  dim xminus23, xmod120, xdiv120, xmod22, xdiv22, yminus25, ymod24, ydiv24 as integer
 		  
 		  xminus23 = x - 23
-		  xmod22 = xminus23 mod 22
-		  if xmod22 > 0 and xmod22 < 13 then
-		    xdiv22 = xminus23 \ 22
-		    if xdiv22 > -1 and xdiv22 < 5 then
-		      yminus25 = y - 25
-		      ymod24 = yminus25 mod 24
-		      if ymod24 > 0 and ymod24 < 14 then
-		        ydiv24 = yminus25 \ 24
-		        if ydiv24 > -1 and ydiv24 < 5 then
-		          update_action(xdiv22,ydiv24,0)
-		          refresh
+		  xdiv120 = xminus23 \ 120
+		  if xdiv120 > -1 and xdiv120 < 5 then
+		    xmod120 = xminus23 mod 120
+		    xmod22 = xmod120 mod 22
+		    if xmod22 > 0 and xmod22 < 13 then
+		      xdiv22 = xmod120 \ 22
+		      if xdiv22 > -1 and xdiv22 < 5 then
+		        yminus25 = y - 25
+		        ymod24 = yminus25 mod 24
+		        if ymod24 > 0 and ymod24 < 14 then
+		          ydiv24 = yminus25 \ 24
+		          if ydiv24 > -1 and ydiv24 < 5 then
+		            update_action(xdiv22,ydiv24,xdiv120)
+		            refresh
+		          end
 		        end
 		      end
 		    end
