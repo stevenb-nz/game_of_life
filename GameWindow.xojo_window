@@ -1010,6 +1010,23 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub one_step_s3l()
+		  'dim i,j as integer
+		  '
+		  'for i = 0 to x-1
+		  'for j = 0 to y-1
+		  'if dsa(i,j) then
+		  'inc_neighbours_sl(i,j)
+		  'end
+		  'next
+		  'next
+		  '
+		  'next_gen_sl
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub one_step_sl()
 		  dim i,j as integer
 		  

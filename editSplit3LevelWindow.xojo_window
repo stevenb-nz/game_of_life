@@ -9,7 +9,7 @@ Begin Window editSplit3LevelWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   230
+   Height          =   198
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -25,7 +25,7 @@ Begin Window editSplit3LevelWindow
    Resizeable      =   True
    Title           =   "Edit Mode details"
    Visible         =   True
-   Width           =   212
+   Width           =   628
    Begin PushButton OKButton
       AutoDeactivate  =   True
       Bold            =   False
@@ -39,7 +39,7 @@ Begin Window editSplit3LevelWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   112
+      Left            =   528
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -52,7 +52,7 @@ Begin Window editSplit3LevelWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   190
+      Top             =   158
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -71,7 +71,7 @@ Begin Window editSplit3LevelWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   20
+      Left            =   436
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -84,7 +84,7 @@ Begin Window editSplit3LevelWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   190
+      Top             =   158
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -160,19 +160,19 @@ End
 #tag WindowCode
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim xminus27, xmod36, xdiv36, yminus25, ymod25, ydiv25 as integer
+		  dim xminus23, xmod22, xdiv22, yminus25, ymod24, ydiv24 as integer
 		  
-		  xminus27 = x - 27
-		  xmod36 = xminus27 mod 36
-		  if xmod36 > 0 and xmod36 < 13 then
-		    xdiv36 = xminus27 \ 36
-		    if xdiv36 > -1 and xdiv36 < 5 then
+		  xminus23 = x - 23
+		  xmod22 = xminus23 mod 22
+		  if xmod22 > 0 and xmod22 < 13 then
+		    xdiv22 = xminus23 \ 22
+		    if xdiv22 > -1 and xdiv22 < 5 then
 		      yminus25 = y - 25
-		      ymod25 = yminus25 mod 25
-		      if ymod25 > 0 and ymod25 < 14 then
-		        ydiv25 = yminus25 \ 25
-		        if ydiv25 > -1 and ydiv25 < 5 then
-		          update_action(xdiv36,ydiv25)
+		      ymod24 = yminus25 mod 24
+		      if ymod24 > 0 and ymod24 < 14 then
+		        ydiv24 = yminus25 \ 24
+		        if ydiv24 > -1 and ydiv24 < 5 then
+		          update_action(xdiv22,ydiv24,0)
 		          refresh
 		        end
 		      end
@@ -184,11 +184,13 @@ End
 
 	#tag Event
 		Sub Open()
-		  dim i,j as integer
+		  dim i,j,k as integer
 		  
 		  for i = 0 to 4
 		    for j = 0 to 4
-		      temp_actions(i,j) = GameWindow.split_level_actions(i,j)
+		      for k = 0 to 4
+		        temp_actions(i,j,k) = GameWindow.split_3_level_actions(i,j,k)
+		      next
 		    next
 		  next
 		  
@@ -199,14 +201,16 @@ End
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  dim i,j as integer
+		  dim i,j,k as integer
 		  
 		  g.TextSize = 18
 		  g.TextFont = "Courier New"
 		  
 		  for i = 0 to 4
 		    for j = 0 to 4
-		      g.DrawString temp_actions(i,j).Uppercase,28+j*36,37+i*25
+		      for k = 0 to 4
+		        g.DrawString temp_actions(i,j,k).Uppercase,24+i*22+k*120,37+j*24
+		      next
 		    next
 		  next
 		  
@@ -215,16 +219,16 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub update_action(l2 as integer,l1 as integer)
-		  select case temp_actions(l1,l2)
+		Sub update_action(l1 as integer, l2 as integer, l3 as integer)
+		  select case temp_actions(l1,l2,l3)
 		  case "d"
-		    temp_actions(l1,l2) = "r"
+		    temp_actions(l1,l2,l3) = "r"
 		  case "r"
-		    temp_actions(l1,l2) = "u"
+		    temp_actions(l1,l2,l3) = "u"
 		  case "u"
-		    temp_actions(l1,l2) = "c"
+		    temp_actions(l1,l2,l3) = "c"
 		  case "c"
-		    temp_actions(l1,l2) = "d"
+		    temp_actions(l1,l2,l3) = "d"
 		  end select
 		  
 		End Sub
@@ -232,7 +236,7 @@ End
 
 
 	#tag Property, Flags = &h0
-		temp_actions(4,4) As String
+		temp_actions(4,4,4) As String
 	#tag EndProperty
 
 
@@ -241,11 +245,13 @@ End
 #tag Events OKButton
 	#tag Event
 		Sub Action()
-		  dim i,j as integer
+		  dim i,j,k as integer
 		  
 		  for i = 0 to 4
 		    for j = 0 to 4
-		      GameWindow.split_level_actions(i,j) = temp_actions(i,j)
+		      for k = 0 to 4
+		        GameWindow.split_3_level_actions(i,j,k) = temp_actions(i,j,k)
+		      next
 		    next
 		  next
 		  
@@ -264,20 +270,22 @@ End
 #tag Events RandomButton
 	#tag Event
 		Sub Action()
-		  dim i,j as integer
+		  dim i,j,k as integer
 		  
 		  for i = 0 to 4
 		    for j = 0 to 4
-		      select case app.Randomizer.InRange(1,40)
-		      case 1 to 10
-		        temp_actions(i,j) = "c"
-		      case 11 to 18
-		        temp_actions(i,j) = "r"
-		      case 19 to 20
-		        temp_actions(i,j) = "u"
-		      else
-		        temp_actions(i,j) = "d"
-		      end
+		      for k = 0 to 4
+		        select case app.Randomizer.InRange(1,40)
+		        case 1 to 10
+		          temp_actions(i,j,k) = "c"
+		        case 11 to 18
+		          temp_actions(i,j,k) = "r"
+		        case 19 to 20
+		          temp_actions(i,j,k) = "u"
+		        else
+		          temp_actions(i,j,k) = "d"
+		        end
+		      next
 		    next
 		  next
 		  
@@ -289,18 +297,20 @@ End
 #tag Events ClassicButton
 	#tag Event
 		Sub Action()
-		  dim i,j as integer
+		  dim i,j,k as integer
 		  
 		  for i = 0 to 4
 		    for j = 0 to 4
-		      select case i+j
-		      case 2
-		        temp_actions(i,j) = "r"
-		      case 3
-		        temp_actions(i,j) = "c"
-		      else
-		        temp_actions(i,j) = "d"
-		      end
+		      for k = 0 to 4
+		        select case i+j
+		        case 2
+		          temp_actions(i,j,k) = "r"
+		        case 3
+		          temp_actions(i,j,k) = "c"
+		        else
+		          temp_actions(i,j,k) = "d"
+		        end
+		      next
 		    next
 		  next
 		  

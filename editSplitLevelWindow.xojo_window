@@ -206,7 +206,7 @@ End
 		  
 		  for i = 0 to 4
 		    for j = 0 to 4
-		      g.DrawString temp_actions(i,j).Uppercase,28+j*36,37+i*25
+		      g.DrawString temp_actions(i,j).Uppercase,28+i*36,37+j*25
 		    next
 		  next
 		  
@@ -215,7 +215,7 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub update_action(l2 as integer,l1 as integer)
+		Sub update_action(l1 as integer, l2 as integer)
 		  select case temp_actions(l1,l2)
 		  case "d"
 		    temp_actions(l1,l2) = "r"
