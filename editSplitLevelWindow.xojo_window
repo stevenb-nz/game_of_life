@@ -9,7 +9,7 @@ Begin Window editSplitLevelWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   230
+   Height          =   262
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -52,7 +52,7 @@ Begin Window editSplitLevelWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   190
+      Top             =   222
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -84,7 +84,7 @@ Begin Window editSplitLevelWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   190
+      Top             =   222
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -135,7 +135,7 @@ Begin Window editSplitLevelWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   112
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -148,7 +148,71 @@ Begin Window editSplitLevelWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
+      Top             =   190
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton MutateButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   True
+      Caption         =   "Mutate"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   112
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
       Top             =   158
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton ClearButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   True
+      Caption         =   "Clear"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   112
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   190
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -289,6 +353,54 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events ClassicButton
+	#tag Event
+		Sub Action()
+		  dim i,j as integer
+		  
+		  for i = 0 to 4
+		    for j = 0 to 4
+		      select case i+j
+		      case 2
+		        temp_actions(i,j) = "r"
+		      case 3
+		        temp_actions(i,j) = "c"
+		      else
+		        temp_actions(i,j) = "d"
+		      end
+		    next
+		  next
+		  
+		  Refresh
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events MutateButton
+	#tag Event
+		Sub Action()
+		  dim i,j as integer
+		  
+		  for i = 0 to 4
+		    for j = 0 to 4
+		      select case app.Randomizer.InRange(1,40)
+		      case 1 to 10
+		        temp_actions(i,j) = "c"
+		      case 11 to 18
+		        temp_actions(i,j) = "r"
+		      case 19 to 20
+		        temp_actions(i,j) = "u"
+		      else
+		        temp_actions(i,j) = "d"
+		      end
+		    next
+		  next
+		  
+		  Refresh
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ClearButton
 	#tag Event
 		Sub Action()
 		  dim i,j as integer

@@ -205,7 +205,7 @@ Begin Window edit2DeepWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   430
+      Left            =   522
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -213,6 +213,70 @@ Begin Window edit2DeepWindow
       LockTop         =   True
       Scope           =   0
       TabIndex        =   9
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   60
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton MutateButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   True
+      Caption         =   "Mutate"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   430
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   60
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton ClearButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   True
+      Caption         =   "Clear"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   614
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   11
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -423,6 +487,46 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events ClassicButton
+	#tag Event
+		Sub Action()
+		  l1 = 1
+		  l2 = 0
+		  L1WeightLabel.text = "Level 1 multiplier: "+l1.ToText
+		  L2WeightLabel.text = "Level 2 multiplier: "+l2.ToText
+		  temp_actions = "ddrcddddd"
+		  
+		  Refresh
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events MutateButton
+	#tag Event
+		Sub Action()
+		  dim i,j as integer
+		  
+		  j = len(temp_actions)
+		  temp_actions = ""
+		  
+		  for i = 1 to j
+		    select case app.Randomizer.InRange(1,45)
+		    case 1 to 4
+		      temp_actions = temp_actions + "c"
+		    case 5 to 8
+		      temp_actions = temp_actions + "r"
+		    case 9 to 10
+		      temp_actions = temp_actions + "u"
+		    else
+		      temp_actions = temp_actions + "d"
+		    end
+		  next
+		  
+		  Refresh
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ClearButton
 	#tag Event
 		Sub Action()
 		  l1 = 1
