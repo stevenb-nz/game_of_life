@@ -135,7 +135,7 @@ Begin Window editSplit3LevelWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   112
+      Left            =   204
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -167,7 +167,7 @@ Begin Window editSplit3LevelWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   204
+      Left            =   296
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -175,6 +175,38 @@ Begin Window editSplit3LevelWindow
       LockTop         =   True
       Scope           =   0
       TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   158
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton MutateButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   True
+      Caption         =   "Mutate"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   112
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   11
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -366,6 +398,35 @@ End
 		    for j = 0 to 4
 		      for k = 0 to 4
 		        temp_actions(i,j,k) = "d"
+		      next
+		    next
+		  next
+		  
+		  Refresh
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events MutateButton
+	#tag Event
+		Sub Action()
+		  dim i,j,k as integer
+		  
+		  for i = 0 to 4
+		    for j = 0 to 4
+		      for k = 0 to 4
+		        if app.Randomizer.InRange(0,4) = 0 then
+		          select case app.Randomizer.InRange(1,40)
+		          case 1 to 10
+		            temp_actions(i,j,k) = "c"
+		          case 11 to 18
+		            temp_actions(i,j,k) = "r"
+		          case 19 to 20
+		            temp_actions(i,j,k) = "u"
+		          else
+		            temp_actions(i,j,k) = "d"
+		          end
+		        end
 		      next
 		    next
 		  next
