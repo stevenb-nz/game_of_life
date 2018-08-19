@@ -1141,6 +1141,16 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub stop_timer_reset_gens()
+		  StartStopButton.Caption = "Start"
+		  mytimer.Mode = Timer.ModeOff
+		  reset_gens
+		  refresh
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub toggle_paint(x as integer, y as integer)
 		  dim xx,yy as integer
 		  
@@ -1251,6 +1261,15 @@ End
 		Sub Action()
 		  dim i,j,k,l as integer
 		  
+		  StartStopButton.Caption = "Start"
+		  mytimer.Mode = Timer.ModeOff
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      dsa(i,j) = false
+		    next
+		  next
+		  
 		  k = app.Randomizer.InRange(1,x\2)
 		  l = app.Randomizer.InRange(1,y\2)
 		  
@@ -1258,8 +1277,6 @@ End
 		    for j = y\2-l to (y\2-1)+l
 		      if App.Randomizer.Number < 0.5 then
 		        dsa(i,j) = true
-		      else
-		        dsa(i,j) = false
 		      end
 		    next
 		  next
@@ -1340,6 +1357,8 @@ End
 		  case "classic"
 		    ModeLabel.Text = "split 3 level"
 		  end select
+		  
+		  stop_timer_reset_gens
 		  
 		End Sub
 	#tag EndEvent

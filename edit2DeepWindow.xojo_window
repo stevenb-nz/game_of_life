@@ -382,6 +382,8 @@ End
 		    GameWindow.actions(i) = mid(temp_actions,i+1,1).Lowercase
 		  next
 		  
+		  GameWindow.stop_timer_reset_gens
+		  
 		  self.close
 		  
 		End Sub

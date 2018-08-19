@@ -249,6 +249,8 @@ End
 		    next
 		  next
 		  
+		  GameWindow.stop_timer_reset_gens
+		  
 		  self.close
 		  
 		End Sub
