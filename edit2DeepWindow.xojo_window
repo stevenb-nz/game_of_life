@@ -504,20 +504,26 @@ End
 	#tag Event
 		Sub Action()
 		  dim i,j as integer
+		  dim bu_actions as string
 		  
+		  bu_actions = temp_actions
 		  j = len(temp_actions)
 		  temp_actions = ""
 		  
 		  for i = 1 to j
-		    select case app.Randomizer.InRange(1,45)
-		    case 1 to 4
-		      temp_actions = temp_actions + "c"
-		    case 5 to 8
-		      temp_actions = temp_actions + "r"
-		    case 9 to 10
-		      temp_actions = temp_actions + "u"
+		    if app.Randomizer.InRange(0,4) = 0 then
+		      select case app.Randomizer.InRange(1,45)
+		      case 1 to 4
+		        temp_actions = temp_actions + "c"
+		      case 5 to 8
+		        temp_actions = temp_actions + "r"
+		      case 9 to 10
+		        temp_actions = temp_actions + "u"
+		      else
+		        temp_actions = temp_actions + "d"
+		      end
 		    else
-		      temp_actions = temp_actions + "d"
+		      temp_actions = temp_actions + mid(bu_actions,i,1)
 		    end
 		  next
 		  
@@ -533,7 +539,7 @@ End
 		  l2 = 0
 		  L1WeightLabel.text = "Level 1 multiplier: "+l1.ToText
 		  L2WeightLabel.text = "Level 2 multiplier: "+l2.ToText
-		  temp_actions = "ddrcddddd"
+		  temp_actions = "ddddddddd"
 		  
 		  Refresh
 		  

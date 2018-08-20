@@ -382,15 +382,17 @@ End
 		  
 		  for i = 0 to 16
 		    for j = 0 to 8
-		      select case app.Randomizer.InRange(1,45)
-		      case 1 to 4
-		        temp_actions(i,j) = "c"
-		      case 5 to 8
-		        temp_actions(i,j) = "r"
-		      case 9 to 10
-		        temp_actions(i,j) = "u"
-		      else
-		        temp_actions(i,j) = "d"
+		      if app.Randomizer.InRange(0,4) = 0 then
+		        select case app.Randomizer.InRange(1,45)
+		        case 1 to 4
+		          temp_actions(i,j) = "c"
+		        case 5 to 8
+		          temp_actions(i,j) = "r"
+		        case 9 to 10
+		          temp_actions(i,j) = "u"
+		        else
+		          temp_actions(i,j) = "d"
+		        end
 		      end
 		    next
 		  next
@@ -407,14 +409,7 @@ End
 		  
 		  for i = 0 to 16
 		    for j = 0 to 8
-		      select case j
-		      case 2
-		        temp_actions(i,j) = "r"
-		      case 3
-		        temp_actions(i,j) = "c"
-		      else
-		        temp_actions(i,j) = "d"
-		      end
+		      temp_actions(i,j) = "d"
 		    next
 		  next
 		  
