@@ -321,7 +321,7 @@ End
 
 	#tag Event
 		Sub Open()
-		  dim i,j as integer
+		  dim i,j,k as integer
 		  dim classic_actions_string as string
 		  
 		  mytimer = new CustomTimer
@@ -352,12 +352,20 @@ End
 		  redim tca(x,y)
 		  redim tcal(x,y,1)
 		  redim tca3l(x,y,2)
+		  redim tcas(x,y,8)
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
 		      tca(i,j) = 0
-		      tcal(i,j,0) = 0
-		      tcal(i,j,1) = 0
+		      for k = 0 to 1
+		        tcal(i,j,k) = 0
+		      next
+		      for k = 0 to 2
+		        tca3l(i,j,k) = 0
+		      next
+		      for k = 0 to 8
+		        tcas(i,j,k) = 0
+		      next
 		      dsa(i,j) = false
 		    next
 		  next
@@ -1243,6 +1251,10 @@ End
 
 	#tag Property, Flags = &h0
 		tcal(-1,-1,1) As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		tcas(-1,-1,8) As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
