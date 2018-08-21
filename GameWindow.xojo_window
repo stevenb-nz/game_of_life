@@ -224,38 +224,6 @@ Begin Window GameWindow
       Visible         =   True
       Width           =   80
    End
-   Begin PushButton ModeButton
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   False
-      Caption         =   "Mode"
-      Default         =   False
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   820
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   6
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   84
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   80
-   End
    Begin Label ModeLabel
       AutoDeactivate  =   True
       Bold            =   False
@@ -286,6 +254,38 @@ Begin Window GameWindow
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   116
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PopupMenu ModePopupMenu
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   "Mode"
+      Italic          =   False
+      Left            =   820
+      ListIndex       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   84
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -1342,27 +1342,6 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events ModeButton
-	#tag Event
-		Sub Action()
-		  select case ModeLabel.Text
-		  case "2 deep"
-		    ModeLabel.Text = "classic"
-		  case "2 layers"
-		    ModeLabel.Text = "2 deep"
-		  case "split level"
-		    ModeLabel.Text = "2 layers"
-		  case "split 3 level"  
-		    ModeLabel.Text = "split level"
-		  case "classic"
-		    ModeLabel.Text = "split 3 level"
-		  end select
-		  
-		  stop_timer_reset_gens
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events ModeLabel
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
@@ -1379,6 +1358,27 @@ End
 		  end select
 		  
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events ModePopupMenu
+	#tag Event
+		Sub Open()
+		  Dim modes() As String = Array("classic", "2 deep", "2 layers", "split level", "split 3 level")
+		  For Each m As String In modes
+		    Me.AddRow(m)
+		  Next
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  if me.Text <> "Mode" then
+		    ModeLabel.Text = me.Text
+		    me.ListIndex = 0
+		    stop_timer_reset_gens
+		  end
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
