@@ -1363,7 +1363,7 @@ End
 #tag Events ModePopupMenu
 	#tag Event
 		Sub Open()
-		  Dim modes() As String = Array("classic", "2 deep", "2 layers", "split level", "split 3 level")
+		  Dim modes() As String = Array("classic", "2 deep", "2 layers", "split level", "split 3 level","singles")
 		  For Each m As String In modes
 		    Me.AddRow(m)
 		  Next
