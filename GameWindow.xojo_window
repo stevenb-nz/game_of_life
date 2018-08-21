@@ -1372,7 +1372,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Change()
-		  if me.Text <> "Mode" then
+		  if me.Text <> "Mode" and me.text <> ModeLabel.Text then
 		    ModeLabel.Text = me.Text
 		    me.ListIndex = 0
 		    stop_timer_reset_gens
