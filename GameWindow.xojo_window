@@ -1399,6 +1399,8 @@ End
 		    editSplitLevelWindow.ShowModal
 		  case "split 3 level"
 		    editSplit3LevelWindow.ShowModal
+		  case "singles"
+		    editSinglesWindow.ShowModal
 		  case "classic"
 		  end select
 		  
