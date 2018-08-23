@@ -9,7 +9,7 @@ Begin Window editSinglesWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   198
+   Height          =   276
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -25,7 +25,7 @@ Begin Window editSinglesWindow
    Resizeable      =   True
    Title           =   "Edit Mode details"
    Visible         =   True
-   Width           =   628
+   Width           =   794
    Begin PushButton OKButton
       AutoDeactivate  =   True
       Bold            =   False
@@ -39,7 +39,7 @@ Begin Window editSinglesWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   528
+      Left            =   694
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -52,7 +52,7 @@ Begin Window editSinglesWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   158
+      Top             =   233
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -71,7 +71,7 @@ Begin Window editSinglesWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   436
+      Left            =   602
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -84,7 +84,7 @@ Begin Window editSinglesWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   158
+      Top             =   233
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -116,7 +116,7 @@ Begin Window editSinglesWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   158
+      Top             =   233
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -148,7 +148,7 @@ Begin Window editSinglesWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   158
+      Top             =   233
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -180,7 +180,7 @@ Begin Window editSinglesWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   158
+      Top             =   233
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -212,7 +212,7 @@ Begin Window editSinglesWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   158
+      Top             =   233
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -239,7 +239,7 @@ End
 		        if ymod24 > 0 and ymod24 < 14 then
 		          ydiv24 = yminus25 \ 24
 		          if ydiv24 > -1 and ydiv24 < 5 then
-		            update_action(xdiv22,ydiv24,xdiv120)
+		            'update_action(xdiv22,ydiv24,xdiv120)
 		            refresh
 		          end
 		        end
@@ -279,15 +279,25 @@ End
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  dim i,j,k as integer
+		  dim i,j,k,l,m,n,o,p as integer
 		  
 		  g.TextSize = 18
 		  g.TextFont = "Courier New"
 		  
-		  for i = 0 to 4
-		    for j = 0 to 4
-		      for k = 0 to 4
-		        g.DrawString temp_actions(i,j,k).Uppercase,24+i*22+k*120,37+j*24
+		  for i = 0 to 1
+		    for j = 0 to 1
+		      for k = 0 to 1
+		        for l = 0 to 1
+		          for m = 0 to 1
+		            for n = 0 to 1
+		              for o = 0 to 1
+		                for p = 0 to 1
+		                  g.DrawString temp_actions(i,j,k,l,m,n,o,p).Uppercase,24+l*22+m*46+n*94+o*190+p*382,37+i*24+j*50+k*102
+		                next
+		              next
+		            next
+		          next
+		        next
 		      next
 		    next
 		  next
