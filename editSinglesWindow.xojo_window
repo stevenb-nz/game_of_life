@@ -252,12 +252,22 @@ End
 
 	#tag Event
 		Sub Open()
-		  dim i,j,k as integer
+		  dim i,j,k,l,m,n,o,p as integer
 		  
-		  for i = 0 to 4
-		    for j = 0 to 4
-		      for k = 0 to 4
-		        temp_actions(i,j,k) = GameWindow.split_3_level_actions(i,j,k)
+		  for i = 0 to 1
+		    for j = 0 to 1
+		      for k = 0 to 1
+		        for l = 0 to 1
+		          for m = 0 to 1
+		            for n = 0 to 1
+		              for o = 0 to 1
+		                for p = 0 to 1
+		                  temp_actions(i,j,k,l,m,n,o,p) = GameWindow.singles_actions(i,j,k,l,m,n,o,p)
+		                next
+		              next
+		            next
+		          next
+		        next
 		      next
 		    next
 		  next
@@ -287,16 +297,16 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub update_action(l1 as integer, l2 as integer, l3 as integer)
-		  select case temp_actions(l1,l2,l3)
+		Sub update_action(l1 as integer, l2 as integer, l3 as integer, l4 as integer, l5 as integer, l6 as integer, l7 as integer, l8 as integer)
+		  select case temp_actions(l1,l2,l3,l4,l5,l6,l7,l8)
 		  case "d"
-		    temp_actions(l1,l2,l3) = "r"
+		    temp_actions(l1,l2,l3,l4,l5,l6,l7,l8) = "r"
 		  case "r"
-		    temp_actions(l1,l2,l3) = "u"
+		    temp_actions(l1,l2,l3,l4,l5,l6,l7,l8) = "u"
 		  case "u"
-		    temp_actions(l1,l2,l3) = "c"
+		    temp_actions(l1,l2,l3,l4,l5,l6,l7,l8) = "c"
 		  case "c"
-		    temp_actions(l1,l2,l3) = "d"
+		    temp_actions(l1,l2,l3,l4,l5,l6,l7,l8) = "d"
 		  end select
 		  
 		End Sub
@@ -304,7 +314,7 @@ End
 
 
 	#tag Property, Flags = &h0
-		temp_actions(4,4,4) As String
+		temp_actions(1,1,1,1,1,1,1,1) As String
 	#tag EndProperty
 
 
@@ -313,12 +323,22 @@ End
 #tag Events OKButton
 	#tag Event
 		Sub Action()
-		  dim i,j,k as integer
+		  dim i,j,k,l,m,n,o,p as integer
 		  
-		  for i = 0 to 4
-		    for j = 0 to 4
-		      for k = 0 to 4
-		        GameWindow.split_3_level_actions(i,j,k) = temp_actions(i,j,k)
+		  for i = 0 to 1
+		    for j = 0 to 1
+		      for k = 0 to 1
+		        for l = 0 to 1
+		          for m = 0 to 1
+		            for n = 0 to 1
+		              for o = 0 to 1
+		                for p = 0 to 1
+		                  GameWindow.singles_actions(i,j,k,l,m,n,o,p) = temp_actions(i,j,k,l,m,n,o,p)
+		                next
+		              next
+		            next
+		          next
+		        next
 		      next
 		    next
 		  next
@@ -340,24 +360,35 @@ End
 #tag Events RandomButton
 	#tag Event
 		Sub Action()
-		  dim i,j,k as integer
+		  dim i,j,k,l,m,n,o,p as integer
 		  
-		  for i = 0 to 4
-		    for j = 0 to 4
-		      for k = 0 to 4
-		        select case app.Randomizer.InRange(1,40)
-		        case 1 to 10
-		          temp_actions(i,j,k) = "c"
-		        case 11 to 18
-		          temp_actions(i,j,k) = "r"
-		        case 19 to 20
-		          temp_actions(i,j,k) = "u"
-		        else
-		          temp_actions(i,j,k) = "d"
-		        end
+		  for i = 0 to 1
+		    for j = 0 to 1
+		      for k = 0 to 1
+		        for l = 0 to 1
+		          for m = 0 to 1
+		            for n = 0 to 1
+		              for o = 0 to 1
+		                for p = 0 to 1
+		                  select case app.Randomizer.InRange(1,40)
+		                  case 1 to 10
+		                    temp_actions(i,j,k,l,m,n,o,p) = "c"
+		                  case 11 to 18
+		                    temp_actions(i,j,k,l,m,n,o,p) = "r"
+		                  case 19 to 20
+		                    temp_actions(i,j,k,l,m,n,o,p) = "u"
+		                  else
+		                    temp_actions(i,j,k,l,m,n,o,p) = "d"
+		                  end
+		                next      
+		              next
+		            next      
+		          next
+		        next      
 		      next
-		    next
+		    next      
 		  next
+		  
 		  
 		  Refresh
 		  
@@ -367,19 +398,29 @@ End
 #tag Events ClassicButton
 	#tag Event
 		Sub Action()
-		  dim i,j,k as integer
+		  dim i,j,k,l,m,n,o,p as integer
 		  
-		  for i = 0 to 4
-		    for j = 0 to 4
-		      for k = 0 to 4
-		        select case i+j
-		        case 2
-		          temp_actions(i,j,k) = "r"
-		        case 3
-		          temp_actions(i,j,k) = "c"
-		        else
-		          temp_actions(i,j,k) = "d"
-		        end
+		  for i = 0 to 1
+		    for j = 0 to 1
+		      for k = 0 to 1
+		        for l = 0 to 1
+		          for m = 0 to 1
+		            for n = 0 to 1
+		              for o = 0 to 1
+		                for p = 0 to 1
+		                  select case i+j+k+l+m+n+o+p
+		                  case 2
+		                    temp_actions(i,j,k,l,m,n,o,p) = "r"
+		                  case 3
+		                    temp_actions(i,j,k,l,m,n,o,p) = "c"
+		                  else
+		                    temp_actions(i,j,k,l,m,n,o,p) = "d"
+		                  end
+		                next
+		              next
+		            next
+		          next
+		        next
 		      next
 		    next
 		  next
@@ -392,12 +433,22 @@ End
 #tag Events ClearButton
 	#tag Event
 		Sub Action()
-		  dim i,j,k as integer
+		  dim i,j,k,l,m,n,o,p as integer
 		  
-		  for i = 0 to 4
-		    for j = 0 to 4
-		      for k = 0 to 4
-		        temp_actions(i,j,k) = "d"
+		  for i = 0 to 1
+		    for j = 0 to 1
+		      for k = 0 to 1
+		        for l = 0 to 1
+		          for m = 0 to 1
+		            for n = 0 to 1
+		              for o = 0 to 1
+		                for p = 0 to 1
+		                  temp_actions(i,j,k,l,m,n,o,p) = "d"
+		                next
+		              next
+		            next
+		          next
+		        next
 		      next
 		    next
 		  next
@@ -410,23 +461,33 @@ End
 #tag Events MutateButton
 	#tag Event
 		Sub Action()
-		  dim i,j,k as integer
+		  dim i,j,k,l,m,n,o,p as integer
 		  
-		  for i = 0 to 4
-		    for j = 0 to 4
-		      for k = 0 to 4
-		        if app.Randomizer.InRange(0,4) = 0 then
-		          select case app.Randomizer.InRange(1,40)
-		          case 1 to 10
-		            temp_actions(i,j,k) = "c"
-		          case 11 to 18
-		            temp_actions(i,j,k) = "r"
-		          case 19 to 20
-		            temp_actions(i,j,k) = "u"
-		          else
-		            temp_actions(i,j,k) = "d"
-		          end
-		        end
+		  for i = 0 to 1
+		    for j = 0 to 1
+		      for k = 0 to 1
+		        for l = 0 to 1
+		          for m = 0 to 1
+		            for n = 0 to 1
+		              for o = 0 to 1
+		                for p = 0 to 1
+		                  if app.Randomizer.InRange(0,4) = 0 then
+		                    select case app.Randomizer.InRange(1,40)
+		                    case 1 to 10
+		                      temp_actions(i,j,k,l,m,n,o,p) = "c"
+		                    case 11 to 18
+		                      temp_actions(i,j,k,l,m,n,o,p) = "r"
+		                    case 19 to 20
+		                      temp_actions(i,j,k,l,m,n,o,p) = "u"
+		                    else
+		                      temp_actions(i,j,k,l,m,n,o,p) = "d"
+		                    end
+		                  end
+		                next
+		              next
+		            next
+		          next
+		        next
 		      next
 		    next
 		  next
