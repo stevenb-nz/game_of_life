@@ -224,28 +224,48 @@ End
 #tag WindowCode
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim xminus23, xmod120, xdiv120, xmod22, xdiv22, yminus25, ymod24, ydiv24 as integer
+		  dim xminus23, xmod382, p, xmod190, o, xmod94, n, xmod46, m, xmod22, l, yminus25, ymod102, k, ymod50, j, ymod24, i as integer
 		  
 		  xminus23 = x - 23
-		  xdiv120 = xminus23 \ 120
-		  if xdiv120 > -1 and xdiv120 < 5 then
-		    xmod120 = xminus23 mod 120
-		    xmod22 = xmod120 mod 22
-		    if xmod22 > 0 and xmod22 < 13 then
-		      xdiv22 = xmod120 \ 22
-		      if xdiv22 > -1 and xdiv22 < 5 then
-		        yminus25 = y - 25
-		        ymod24 = yminus25 mod 24
-		        if ymod24 > 0 and ymod24 < 14 then
-		          ydiv24 = yminus25 \ 24
-		          if ydiv24 > -1 and ydiv24 < 5 then
-		            'update_action(xdiv22,ydiv24,xdiv120)
-		            refresh
+		  xmod382 = xminus23 mod 382
+		  p = xminus23 \ 382
+		  if p > -1 and p < 2 then
+		    xmod190 = xmod382 mod 190
+		    o = xmod382 \ 190
+		    if o > -1 and o < 2 then
+		      xmod94 = xmod190 mod 94
+		      n = xmod190 \ 94
+		      if n > -1 and n < 2 then
+		        xmod46 = xmod94 mod 46
+		        m = xmod94 \ 46
+		        if m > -1 and m < 2 then
+		          xmod22 = xmod46 mod 22
+		          if xmod22 > 0 and xmod22 < 13 then
+		            l = xmod46 \ 22
+		            if l > -1 and l < 2 then
+		              yminus25 = y - 25
+		              ymod102 = yminus25 mod 102
+		              k = yminus25 \ 102
+		              if k > -1 and k < 2 then
+		                ymod50 = ymod102 mod 50
+		                j = ymod102 \ 50
+		                if j > -1 and j < 2 then
+		                  ymod24 = ymod50 mod 24
+		                  if ymod24 > 0 and ymod24 < 14 then
+		                    i = ymod50 \ 24
+		                    if i > -1 and i < 2 then
+		                      update_action(i,j,k,l,m,n,o,p)
+		                      refresh                              
+		                    end
+		                  end
+		                end
+		              end
+		            end                              
 		          end
 		        end
 		      end
 		    end
-		  end
+		  end                              
 		  
 		End Function
 	#tag EndEvent
@@ -307,16 +327,16 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub update_action(l1 as integer, l2 as integer, l3 as integer, l4 as integer, l5 as integer, l6 as integer, l7 as integer, l8 as integer)
-		  select case temp_actions(l1,l2,l3,l4,l5,l6,l7,l8)
+		Sub update_action(i as integer, j as integer, k as integer, l as integer, m as integer, n as integer, o as integer, p as integer)
+		  select case temp_actions(i,j,k,l,m,n,o,p)
 		  case "d"
-		    temp_actions(l1,l2,l3,l4,l5,l6,l7,l8) = "r"
+		    temp_actions(i,j,k,l,m,n,o,p) = "r"
 		  case "r"
-		    temp_actions(l1,l2,l3,l4,l5,l6,l7,l8) = "u"
+		    temp_actions(i,j,k,l,m,n,o,p) = "u"
 		  case "u"
-		    temp_actions(l1,l2,l3,l4,l5,l6,l7,l8) = "c"
+		    temp_actions(i,j,k,l,m,n,o,p) = "c"
 		  case "c"
-		    temp_actions(l1,l2,l3,l4,l5,l6,l7,l8) = "d"
+		    temp_actions(i,j,k,l,m,n,o,p) = "d"
 		  end select
 		  
 		End Sub
