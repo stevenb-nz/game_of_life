@@ -12,6 +12,8 @@ Inherits Timer
 		    GameWindow.one_step_sl
 		  case "split 3 level"
 		    GameWindow.one_step_s3l
+		  case "singles"
+		    GameWindow.one_step_singles
 		  case "classic"
 		    GameWindow.one_step
 		  end select

@@ -741,6 +741,38 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub inc_neighbours_singles(i as integer, j as integer)
+		  dim u,d,l,r as integer
+		  
+		  u = j - 1
+		  if u < 0 then
+		    u = u+y
+		  end
+		  d = j + 1
+		  if d > y-1 then
+		    d = d-y
+		  end
+		  l = i - 1
+		  if l < 0 then
+		    l = l+x
+		  end
+		  r = i + 1
+		  if r > x-1 then
+		    r = r-x
+		  end
+		  tcas(l,u,4) = tcas(l,u,4) + 1
+		  tcas(l,j,3) = tcas(l,j,3) + 1
+		  tcas(l,d,2) = tcas(l,d,2) + 1
+		  tcas(i,d,1) = tcas(i,d,1) + 1
+		  tcas(r,d,0) = tcas(r,d,0) + 1
+		  tcas(r,j,7) = tcas(r,j,7) + 1
+		  tcas(r,u,6) = tcas(r,u,6) + 1
+		  tcas(i,u,5) = tcas(i,u,5) + 1
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub inc_neighbours_sl(i as integer, j as integer)
 		  dim u,d,l,r as integer
 		  
@@ -1024,6 +1056,34 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub next_gen_singles()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      select case singles_actions(tcas(i,j,0),tcas(i,j,1),tcas(i,j,2),tcas(i,j,3),tcas(i,j,4),tcas(i,j,5),tcas(i,j,6),tcas(i,j,7))
+		      case "c"
+		        dsa(i,j) = true
+		      case "u"
+		        dsa(i,j) = not dsa(i,j)
+		      case "d"
+		        dsa(i,j) = false
+		      end select
+		      tcas(i,j,0) = 0
+		      tcas(i,j,1) = 0
+		      tcas(i,j,2) = 0
+		      tcas(i,j,3) = 0
+		      tcas(i,j,4) = 0
+		      tcas(i,j,5) = 0
+		      tcas(i,j,6) = 0
+		      tcas(i,j,7) = 0
+		    next
+		  next
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub next_gen_sl()
 		  dim i,j as integer
 		  
@@ -1134,6 +1194,23 @@ End
 		  next
 		  
 		  next_gen_s3l
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub one_step_singles()
+		  dim i,j as integer
+		  
+		  for i = 0 to x-1
+		    for j = 0 to y-1
+		      if dsa(i,j) then
+		        inc_neighbours_singles(i,j)
+		      end
+		    next
+		  next
+		  
+		  next_gen_singles
 		  
 		End Sub
 	#tag EndMethod
@@ -1362,6 +1439,8 @@ End
 		    one_step_sl
 		  case "split 3 level"
 		    one_step_s3l
+		  case "singles"
+		    one_step_singles
 		  case "classic"
 		    one_step
 		  end select
