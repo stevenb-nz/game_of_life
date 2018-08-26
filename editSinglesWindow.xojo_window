@@ -254,7 +254,11 @@ End
 		                  if ymod24 > 0 and ymod24 < 14 then
 		                    i = ymod50 \ 24
 		                    if i > -1 and i < 2 then
-		                      update_action(i,j,k,l,m,n,o,p)
+		                      if IsContextualClick then
+		                        
+		                      else
+		                        update_action(i,j,k,l,m,n,o,p)
+		                      end
 		                      refresh                              
 		                    end
 		                  end
