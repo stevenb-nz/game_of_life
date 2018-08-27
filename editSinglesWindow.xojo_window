@@ -255,11 +255,11 @@ End
 		                    i = ymod50 \ 24
 		                    if i > -1 and i < 2 then
 		                      if IsContextualClick then
-		                        
+		                        update_info_item(i,j,k,l,m,n,o,p)
 		                      else
 		                        update_action(i,j,k,l,m,n,o,p)
 		                      end
-		                      refresh                              
+		                      refresh
 		                    end
 		                  end
 		                end
@@ -334,26 +334,17 @@ End
 		    g.DrawLine(385,231+i*8,409,231+i*8)
 		  next
 		  
+		  g.ForeColor = &cdf0022
+		  
+		  if ubound(info_item) > -1 then
+		    for i = 0 to 7
+		      if info_item(i) > 0 then
+		        g.FillOval(i*8+1,j*8+1,6,6)
+		      end
+		    next
+		  end
 		  
 		  
-		  
-		  'g.DrawLine(800,0,800,799)
-		  '
-		  'dim i,j as integer
-		  '
-		  'g.ForeColor = &cf0f0f0
-		  'g.FillRect(392,392,16,16)
-		  '
-		  'for i = 0 to x-1
-		  'for j = 0 to y-1
-		  'if dsa(i,j) then
-		  'g.ForeColor = &cdf0022
-		  'else
-		  'g.ForeColor = &ce9e9e9
-		  'end
-		  'g.FillOval(i*8+1,j*8+1,6,6)
-		  'next
-		  'next
 		  
 		End Sub
 	#tag EndEvent
@@ -375,6 +366,26 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub update_info_item(i as integer, j as integer, k as integer, l as integer, m as integer, n as integer, o as integer, p as integer)
+		  redim info_item(-1)
+		  
+		  info_item.Append i
+		  info_item.Append j
+		  info_item.Append k
+		  info_item.Append l
+		  info_item.Append m
+		  info_item.Append n
+		  info_item.Append o
+		  info_item.Append p
+		  
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		info_item(-1) As Integer
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		temp_actions(1,1,1,1,1,1,1,1) As String
