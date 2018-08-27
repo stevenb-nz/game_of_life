@@ -326,6 +326,35 @@ End
 		    next
 		  next
 		  
+		  g.PenWidth = 1
+		  g.PenHeight = 1
+		  
+		  for i = 0 to 3
+		    g.DrawLine(385+i*8,231,385+i*8,255)
+		    g.DrawLine(385,231+i*8,409,231+i*8)
+		  next
+		  
+		  
+		  
+		  
+		  'g.DrawLine(800,0,800,799)
+		  '
+		  'dim i,j as integer
+		  '
+		  'g.ForeColor = &cf0f0f0
+		  'g.FillRect(392,392,16,16)
+		  '
+		  'for i = 0 to x-1
+		  'for j = 0 to y-1
+		  'if dsa(i,j) then
+		  'g.ForeColor = &cdf0022
+		  'else
+		  'g.ForeColor = &ce9e9e9
+		  'end
+		  'g.FillOval(i*8+1,j*8+1,6,6)
+		  'next
+		  'next
+		  
 		End Sub
 	#tag EndEvent
 
