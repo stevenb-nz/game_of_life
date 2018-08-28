@@ -330,8 +330,8 @@ End
 		  g.PenHeight = 1
 		  
 		  for i = 0 to 3
-		    g.DrawLine(385+i*8,231,385+i*8,255)
-		    g.DrawLine(385,231+i*8,409,231+i*8)
+		    g.DrawLine(383+i*9,230,383+i*9,257)
+		    g.DrawLine(383,230+i*9,410,230+i*9)
 		  next
 		  
 		  g.ForeColor = &cdf0022
@@ -339,11 +339,27 @@ End
 		  if ubound(info_item) > -1 then
 		    for i = 0 to 7
 		      if info_item(i) > 0 then
-		        g.FillOval(i*8+1,j*8+1,6,6)
+		        select case i
+		        case 0
+		          g.FillOval(385,232,6,6)
+		        case 1
+		          g.FillOval(394,232,6,6)
+		        case 2
+		          g.FillOval(403,232,6,6)
+		        case 3
+		          g.FillOval(403,241,6,6)
+		        case 4
+		          g.FillOval(403,250,6,6)
+		        case 5
+		          g.FillOval(394,250,6,6)
+		        case 6
+		          g.FillOval(385,250,6,6)
+		        case 7
+		          g.FillOval(385,241,6,6)
+		        end
 		      end
 		    next
 		  end
-		  
 		  
 		  
 		End Sub
