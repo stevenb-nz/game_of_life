@@ -316,6 +316,12 @@ End
 		            for n = 0 to 1
 		              for o = 0 to 1
 		                for p = 0 to 1
+		                  if asc(temp_actions(i,j,k,l,m,n,o,p)) > 90 then
+		                    g.ForeColor = &c000000
+		                  else
+		                    g.ForeColor = &cdf0022
+		                    temp_actions(i,j,k,l,m,n,o,p) = temp_actions(i,j,k,l,m,n,o,p).lowercase
+		                  end
 		                  g.DrawString temp_actions(i,j,k,l,m,n,o,p).Uppercase,24+l*22+m*46+n*94+o*190+p*382,37+i*24+j*50+k*102
 		                next
 		              next
@@ -359,6 +365,7 @@ End
 		        end
 		      end
 		    next
+		    redim info_item(-1)
 		  end
 		  
 		  
@@ -394,6 +401,8 @@ End
 		  info_item.Append n
 		  info_item.Append o
 		  info_item.Append p
+		  
+		  temp_actions(i,j,k,l,m,n,o,p) = temp_actions(i,j,k,l,m,n,o,p).uppercase
 		  
 		End Sub
 	#tag EndMethod
