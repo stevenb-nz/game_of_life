@@ -322,7 +322,7 @@ End
 		                    g.ForeColor = &cdf0022
 		                    temp_actions(i,j,k,l,m,n,o,p) = temp_actions(i,j,k,l,m,n,o,p).lowercase
 		                  end
-		                  g.DrawString temp_actions(i,j,k,l,m,n,o,p).Uppercase,24+l*22+m*46+n*94+o*190+p*382,37+i*24+j*50+k*102
+		                  drawAction(g,i,j,k,l,m,n,o,p)
 		                next
 		              next
 		            next
@@ -372,6 +372,45 @@ End
 		End Sub
 	#tag EndEvent
 
+
+	#tag Method, Flags = &h0
+		Sub drawAction(g as graphics, i as integer, j as integer, k as integer, l as integer, m as integer, n as integer, o as integer, p as integer)
+		  dim h,x,y as integer
+		  
+		  x = l*22+m*46+n*94+o*190+p*382+21
+		  y = i*24+j*50+k*102+23
+		  
+		  g.ForeColor = &c000000
+		  g.DrawString temp_actions(i,j,k,l,m,n,o,p).Uppercase,x+3,y+14
+		  
+		  g.ForeColor = &cdf0022
+		  update_info_item(i,j,k,l,m,n,o,p)
+		  for h = 0 to 7
+		    if info_item(h) > 0 then
+		      select case h
+		      case 0
+		        g.FillOval(x,y,3,3)
+		      case 1
+		        g.FillOval(x+7,y,3,3)
+		      case 2
+		        g.FillOval(x+14,y,3,3)
+		      case 3
+		        g.FillOval(x+14,y+7,3,3)
+		      case 4
+		        g.FillOval(x+14,y+14,3,3)
+		      case 5
+		        g.FillOval(x+7,y+14,3,3)
+		      case 6
+		        g.FillOval(x,y+14,3,3)
+		      case 7
+		        g.FillOval(x,y+7,3,3)
+		      end
+		    end
+		  next
+		  redim info_item(-1)
+		  
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub update_action(i as integer, j as integer, k as integer, l as integer, m as integer, n as integer, o as integer, p as integer)
