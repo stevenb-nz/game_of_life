@@ -255,7 +255,7 @@ End
 		                    i = ymod50 \ 24
 		                    if i > -1 and i < 2 then
 		                      if IsContextualClick then
-		                        update_info_item(i,j,k,l,m,n,o,p)
+		                        update_action_reverse(i,j,k,l,m,n,o,p)
 		                      else
 		                        update_action(i,j,k,l,m,n,o,p)
 		                      end
@@ -316,12 +316,6 @@ End
 		            for n = 0 to 1
 		              for o = 0 to 1
 		                for p = 0 to 1
-		                  if asc(temp_actions(i,j,k,l,m,n,o,p)) > 90 then
-		                    g.ForeColor = &c000000
-		                  else
-		                    g.ForeColor = &cdf0022
-		                    temp_actions(i,j,k,l,m,n,o,p) = temp_actions(i,j,k,l,m,n,o,p).lowercase
-		                  end
 		                  drawAction(g,i,j,k,l,m,n,o,p)
 		                next
 		              next
@@ -331,43 +325,6 @@ End
 		      next
 		    next
 		  next
-		  
-		  g.PenWidth = 1
-		  g.PenHeight = 1
-		  
-		  for i = 0 to 3
-		    g.DrawLine(383+i*9,230,383+i*9,257)
-		    g.DrawLine(383,230+i*9,410,230+i*9)
-		  next
-		  
-		  g.ForeColor = &cdf0022
-		  
-		  if ubound(info_item) > -1 then
-		    for i = 0 to 7
-		      if info_item(i) > 0 then
-		        select case i
-		        case 0
-		          g.FillOval(385,232,6,6)
-		        case 1
-		          g.FillOval(394,232,6,6)
-		        case 2
-		          g.FillOval(403,232,6,6)
-		        case 3
-		          g.FillOval(403,241,6,6)
-		        case 4
-		          g.FillOval(403,250,6,6)
-		        case 5
-		          g.FillOval(394,250,6,6)
-		        case 6
-		          g.FillOval(385,250,6,6)
-		        case 7
-		          g.FillOval(385,241,6,6)
-		        end
-		      end
-		    next
-		    redim info_item(-1)
-		  end
-		  
 		  
 		End Sub
 	#tag EndEvent
@@ -423,6 +380,22 @@ End
 		    temp_actions(i,j,k,l,m,n,o,p) = "c"
 		  case "c"
 		    temp_actions(i,j,k,l,m,n,o,p) = "d"
+		  end select
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub update_action_reverse(i as integer, j as integer, k as integer, l as integer, m as integer, n as integer, o as integer, p as integer)
+		  select case temp_actions(i,j,k,l,m,n,o,p)
+		  case "d"
+		    temp_actions(i,j,k,l,m,n,o,p) = "c"
+		  case "r"
+		    temp_actions(i,j,k,l,m,n,o,p) = "d"
+		  case "u"
+		    temp_actions(i,j,k,l,m,n,o,p) = "r"
+		  case "c"
+		    temp_actions(i,j,k,l,m,n,o,p) = "u"
 		  end select
 		  
 		End Sub
