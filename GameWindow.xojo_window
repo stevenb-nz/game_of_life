@@ -116,7 +116,7 @@ Begin Window GameWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   148
+      Top             =   180
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -148,7 +148,7 @@ Begin Window GameWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   180
+      Top             =   212
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -183,7 +183,7 @@ Begin Window GameWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   212
+      Top             =   244
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -218,7 +218,7 @@ Begin Window GameWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   244
+      Top             =   276
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -286,6 +286,38 @@ Begin Window GameWindow
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   84
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton BackButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Back"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   820
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   148
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -1508,6 +1540,25 @@ End
 		    ModeLabel.Text = me.Text
 		    me.ListIndex = 0
 		    stop_timer_reset_gens
+		  end
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events BackButton
+	#tag Event
+		Sub Action()
+		  'set to 'back' on any onestep
+		  'set enabled to match step button
+		  
+		  if me.Caption = "Back" then
+		    me.Caption = "Fwd"
+		    'back up current board state, restore backed up board state
+		    
+		  else
+		    me.Caption = "Back"
+		    'swap backed up, current board states
+		    
 		  end
 		  
 		End Sub
