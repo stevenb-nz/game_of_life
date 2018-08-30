@@ -1258,6 +1258,7 @@ End
 		Sub stop_timer_reset_gens()
 		  StartStopButton.Caption = "Start"
 		  mytimer.Mode = Timer.ModeOff
+		  StepButton.enabled = true
 		  reset_gens
 		  refresh
 		  
@@ -1385,6 +1386,7 @@ End
 		  
 		  StartStopButton.Caption = "Start"
 		  mytimer.Mode = Timer.ModeOff
+		  StepButton.enabled = true
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
@@ -1416,6 +1418,8 @@ End
 		  
 		  StartStopButton.Caption = "Start"
 		  mytimer.Mode = Timer.ModeOff
+		  StepButton.enabled = true
+		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
 		      dsa(i,j) = false
@@ -1456,10 +1460,12 @@ End
 		Sub Action()
 		  if me.Caption = "Start" then
 		    me.Caption = "Stop"
+		    StepButton.enabled = false
 		    mytimer.Period = 0
 		    mytimer.Mode = Timer.ModeMultiple
 		  else
 		    me.Caption = "Start"
+		    StepButton.enabled = true
 		    mytimer.Mode = Timer.ModeOff
 		  end
 		  
