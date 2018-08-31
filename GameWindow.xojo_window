@@ -381,7 +381,8 @@ End
 		  action_list(3) = "d"
 		  mrcx = 100
 		  mrcy = 100
-		  redim dsa(x,y)
+		  current_dsa = 0
+		  redim dsa(x,y,1)
 		  redim tca(x,y)
 		  redim tcal(x,y,1)
 		  redim tca3l(x,y,2)
@@ -399,7 +400,8 @@ End
 		      for k = 0 to 8
 		        tcas(i,j,k) = 0
 		      next
-		      dsa(i,j) = false
+		      dsa(i,j,0) = false
+		      dsa(i,j,1) = false
 		    next
 		  next
 		  
@@ -419,7 +421,7 @@ End
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
-		      if dsa(i,j) then
+		      if dsa(i,j,current_dsa) then
 		        g.ForeColor = &cdf0022
 		      else
 		        g.ForeColor = &ce9e9e9
@@ -1016,11 +1018,11 @@ End
 		    for j = 0 to y-1
 		      select case classic_actions(tca(i,j))
 		      case "c"
-		        dsa(i,j) = true
+		        dsa(i,j,current_dsa) = true
 		      case "u"
-		        dsa(i,j) = not dsa(i,j)
+		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j) = false
+		        dsa(i,j,current_dsa) = false
 		      end select
 		      tca(i,j) = 0
 		    next
@@ -1037,11 +1039,11 @@ End
 		    for j = 0 to y-1
 		      select case actions(tca(i,j))
 		      case "c"
-		        dsa(i,j) = true
+		        dsa(i,j,current_dsa) = true
 		      case "u"
-		        dsa(i,j) = not dsa(i,j)
+		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j) = false
+		        dsa(i,j,current_dsa) = false
 		      end select
 		      tca(i,j) = 0
 		    next
@@ -1058,11 +1060,11 @@ End
 		    for j = 0 to y-1
 		      select case layered_actions(tcal(i,j,1),tcal(i,j,0))
 		      case "c"
-		        dsa(i,j) = true
+		        dsa(i,j,current_dsa) = true
 		      case "u"
-		        dsa(i,j) = not dsa(i,j)
+		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j) = false
+		        dsa(i,j,current_dsa) = false
 		      end select
 		      tcal(i,j,0) = 0
 		      tcal(i,j,1) = 0
@@ -1080,11 +1082,11 @@ End
 		    for j = 0 to y-1
 		      select case split_3_level_actions(tca3l(i,j,0),tca3l(i,j,1),tca3l(i,j,2))
 		      case "c"
-		        dsa(i,j) = true
+		        dsa(i,j,current_dsa) = true
 		      case "u"
-		        dsa(i,j) = not dsa(i,j)
+		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j) = false
+		        dsa(i,j,current_dsa) = false
 		      end select
 		      tca3l(i,j,0) = 0
 		      tca3l(i,j,1) = 0
@@ -1103,11 +1105,11 @@ End
 		    for j = 0 to y-1
 		      select case singles_actions(tcas(i,j,0),tcas(i,j,1),tcas(i,j,2),tcas(i,j,3),tcas(i,j,4),tcas(i,j,5),tcas(i,j,6),tcas(i,j,7))
 		      case "c"
-		        dsa(i,j) = true
+		        dsa(i,j,current_dsa) = true
 		      case "u"
-		        dsa(i,j) = not dsa(i,j)
+		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j) = false
+		        dsa(i,j,current_dsa) = false
 		      end select
 		      tcas(i,j,0) = 0
 		      tcas(i,j,1) = 0
@@ -1131,11 +1133,11 @@ End
 		    for j = 0 to y-1
 		      select case split_level_actions(tcal(i,j,0),tcal(i,j,1))
 		      case "c"
-		        dsa(i,j) = true
+		        dsa(i,j,current_dsa) = true
 		      case "u"
-		        dsa(i,j) = not dsa(i,j)
+		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j) = false
+		        dsa(i,j,current_dsa) = false
 		      end select
 		      tcal(i,j,0) = 0
 		      tcal(i,j,1) = 0
@@ -1149,36 +1151,36 @@ End
 		Sub one_step()
 		  dim i,j as integer
 		  
-		  if dsa(0,0) then
+		  if dsa(0,0,current_dsa) then
 		    inc_neighbours_tl(0,0)
 		  end
-		  if dsa(x-1,0) then
+		  if dsa(x-1,0,current_dsa) then
 		    inc_neighbours_tr(x-1,0)
 		  end
 		  for i = 1 to x-2
-		    if dsa(i,0) then
+		    if dsa(i,0,current_dsa) then
 		      inc_neighbours_t(i,0)
 		    end
 		    for j = 1 to y-2
-		      if dsa(i,j) then
+		      if dsa(i,j,current_dsa) then
 		        inc_neighbours(i,j)
 		      end
 		    next
-		    if dsa(i,y-1) then
+		    if dsa(i,y-1,current_dsa) then
 		      inc_neighbours_b(i,y-1)
 		    end
 		  next
-		  if dsa(0,y-1) then
+		  if dsa(0,y-1,current_dsa) then
 		    inc_neighbours_bl(0,y-1)
 		  end
-		  if dsa(x-1,y-1) then
+		  if dsa(x-1,y-1,current_dsa) then
 		    inc_neighbours_br(x-1,y-1)
 		  end
 		  for j = 1 to y-2
-		    if dsa(0,j) then
+		    if dsa(0,j,current_dsa) then
 		      inc_neighbours_l(0,j)
 		    end
-		    if dsa(x-1,j) then
+		    if dsa(x-1,j,current_dsa) then
 		      inc_neighbours_r(x-1,j)
 		    end
 		  next
@@ -1193,7 +1195,7 @@ End
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
-		      if dsa(i,j) then
+		      if dsa(i,j,current_dsa) then
 		        inc_neighbours_2d(i,j)
 		      end
 		    next
@@ -1210,7 +1212,7 @@ End
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
-		      if dsa(i,j) then
+		      if dsa(i,j,current_dsa) then
 		        inc_neighbours_2l(i,j)
 		      end
 		    next
@@ -1227,7 +1229,7 @@ End
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
-		      if dsa(i,j) then
+		      if dsa(i,j,current_dsa) then
 		        inc_neighbours_s3l(i,j)
 		      end
 		    next
@@ -1244,7 +1246,7 @@ End
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
-		      if dsa(i,j) then
+		      if dsa(i,j,current_dsa) then
 		        inc_neighbours_singles(i,j)
 		      end
 		    next
@@ -1261,7 +1263,7 @@ End
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
-		      if dsa(i,j) then
+		      if dsa(i,j,current_dsa) then
 		        inc_neighbours_sl(i,j)
 		      end
 		    next
@@ -1315,7 +1317,7 @@ End
 		  if (mrcx <> xx or mrcy <> yy) and xx < 100 and yy < 100 and xx > -1 and yy > -1 then
 		    mrcx = xx
 		    mrcy = yy
-		    dsa(mrcx,mrcy) = not dsa(mrcx,mrcy)
+		    dsa(mrcx,mrcy,current_dsa) = not dsa(mrcx,mrcy,current_dsa)
 		    refreshrect(mrcx*8,mrcy*8,8,8)
 		    reset_gens
 		  end
@@ -1337,7 +1339,11 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		dsa(-1,-1) As Boolean
+		current_dsa As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dsa(-1,-1,1) As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -1430,7 +1436,7 @@ End
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
-		      dsa(i,j) = false
+		      dsa(i,j,current_dsa) = false
 		    next
 		  next
 		  
@@ -1440,7 +1446,7 @@ End
 		  for i = x\2-k to (x\2-1)+k
 		    for j = y\2-l to (y\2-1)+l
 		      if App.Randomizer.Number < 0.5 then
-		        dsa(i,j) = true
+		        dsa(i,j,current_dsa) = true
 		      end
 		    next
 		  next
@@ -1462,7 +1468,7 @@ End
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
-		      dsa(i,j) = false
+		      dsa(i,j,current_dsa) = false
 		    next
 		  next
 		  reset_gens
