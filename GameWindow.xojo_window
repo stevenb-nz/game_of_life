@@ -461,6 +461,14 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub enableButtons()
+		  StepButton.enabled = true
+		  BackButton.Enabled = true
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub inc_neighbours(i as integer, j as integer)
 		  dim u,d,l,r as integer
 		  
@@ -1290,7 +1298,7 @@ End
 		Sub stop_timer_reset_gens()
 		  StartStopButton.Caption = "Start"
 		  mytimer.Mode = Timer.ModeOff
-		  StepButton.enabled = true
+		  enableButtons
 		  reset_gens
 		  refresh
 		  
@@ -1418,7 +1426,7 @@ End
 		  
 		  StartStopButton.Caption = "Start"
 		  mytimer.Mode = Timer.ModeOff
-		  StepButton.enabled = true
+		  enableButtons
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
@@ -1450,7 +1458,7 @@ End
 		  
 		  StartStopButton.Caption = "Start"
 		  mytimer.Mode = Timer.ModeOff
-		  StepButton.enabled = true
+		  enableButtons
 		  
 		  for i = 0 to x-1
 		    for j = 0 to y-1
@@ -1493,11 +1501,12 @@ End
 		  if me.Caption = "Start" then
 		    me.Caption = "Stop"
 		    StepButton.enabled = false
+		    BackButton.Enabled = false
 		    mytimer.Period = 0
 		    mytimer.Mode = Timer.ModeMultiple
 		  else
 		    me.Caption = "Start"
-		    StepButton.enabled = true
+		    enableButtons
 		    mytimer.Mode = Timer.ModeOff
 		  end
 		  
