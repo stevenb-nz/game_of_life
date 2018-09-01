@@ -1305,6 +1305,8 @@ End
 		Sub reset_gens()
 		  generations = 0
 		  GenCountLabel.Text = Str(generations,gens_fstring)
+		  BackButton.Caption = "Back"
+		  BackButton.Enabled = false
 		  
 		End Sub
 	#tag EndMethod
@@ -1515,6 +1517,8 @@ End
 		  next_dsa = 1 - current_dsa
 		  generations = generations+1
 		  GenCountLabel.Text = Str(generations,gens_fstring)
+		  BackButton.Caption = "Back"
+		  BackButton.Enabled = true
 		  Refresh
 		  
 		End Sub
@@ -1524,6 +1528,7 @@ End
 	#tag Event
 		Sub Action()
 		  if me.Caption = "Start" then
+		    BackButton.Caption = "Back"
 		    me.Caption = "Stop"
 		    StepButton.enabled = false
 		    BackButton.Enabled = false
@@ -1582,17 +1587,20 @@ End
 #tag Events BackButton
 	#tag Event
 		Sub Action()
-		  'set to 'back' on any onestep
-		  'set enabled to match step button
-		  
 		  if me.Caption = "Back" then
 		    me.Caption = "Fwd"
-		    'back up current board state, restore backed up board state
-		    
+		    current_dsa = next_dsa
+		    next_dsa = 1 - current_dsa
+		    generations = generations-1
+		    GenCountLabel.Text = Str(generations,gens_fstring)
+		    Refresh
 		  else
 		    me.Caption = "Back"
-		    'swap backed up, current board states
-		    
+		    current_dsa = next_dsa
+		    next_dsa = 1 - current_dsa
+		    generations = generations+1
+		    GenCountLabel.Text = Str(generations,gens_fstring)
+		    Refresh
 		  end
 		  
 		End Sub
