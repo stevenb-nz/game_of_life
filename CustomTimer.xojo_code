@@ -17,6 +17,8 @@ Inherits Timer
 		  case "classic"
 		    GameWindow.one_step
 		  end select
+		  GameWindow.current_dsa = GameWindow.next_dsa
+		  GameWindow.next_dsa = 1 - GameWindow.current_dsa
 		  GameWindow.generations = GameWindow.generations+1
 		  GameWindow.GenCountLabel.Text = Str(GameWindow.generations,GameWindow.gens_fstring)
 		  GameWindow.Refresh

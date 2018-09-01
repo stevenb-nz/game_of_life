@@ -382,6 +382,7 @@ End
 		  mrcx = 100
 		  mrcy = 100
 		  current_dsa = 0
+		  next_dsa = 1 - current_dsa
 		  redim dsa(x,y,1)
 		  redim tca(x,y)
 		  redim tcal(x,y,1)
@@ -1018,11 +1019,13 @@ End
 		    for j = 0 to y-1
 		      select case classic_actions(tca(i,j))
 		      case "c"
-		        dsa(i,j,current_dsa) = true
+		        dsa(i,j,next_dsa) = true
 		      case "u"
-		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
+		        dsa(i,j,next_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j,current_dsa) = false
+		        dsa(i,j,next_dsa) = false
+		      else
+		        dsa(i,j,next_dsa) = dsa(i,j,current_dsa)
 		      end select
 		      tca(i,j) = 0
 		    next
@@ -1039,11 +1042,13 @@ End
 		    for j = 0 to y-1
 		      select case actions(tca(i,j))
 		      case "c"
-		        dsa(i,j,current_dsa) = true
+		        dsa(i,j,next_dsa) = true
 		      case "u"
-		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
+		        dsa(i,j,next_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j,current_dsa) = false
+		        dsa(i,j,next_dsa) = false
+		      else
+		        dsa(i,j,next_dsa) = dsa(i,j,current_dsa)
 		      end select
 		      tca(i,j) = 0
 		    next
@@ -1060,11 +1065,13 @@ End
 		    for j = 0 to y-1
 		      select case layered_actions(tcal(i,j,1),tcal(i,j,0))
 		      case "c"
-		        dsa(i,j,current_dsa) = true
+		        dsa(i,j,next_dsa) = true
 		      case "u"
-		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
+		        dsa(i,j,next_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j,current_dsa) = false
+		        dsa(i,j,next_dsa) = false
+		      else
+		        dsa(i,j,next_dsa) = dsa(i,j,current_dsa)
 		      end select
 		      tcal(i,j,0) = 0
 		      tcal(i,j,1) = 0
@@ -1082,11 +1089,13 @@ End
 		    for j = 0 to y-1
 		      select case split_3_level_actions(tca3l(i,j,0),tca3l(i,j,1),tca3l(i,j,2))
 		      case "c"
-		        dsa(i,j,current_dsa) = true
+		        dsa(i,j,next_dsa) = true
 		      case "u"
-		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
+		        dsa(i,j,next_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j,current_dsa) = false
+		        dsa(i,j,next_dsa) = false
+		      else
+		        dsa(i,j,next_dsa) = dsa(i,j,current_dsa)
 		      end select
 		      tca3l(i,j,0) = 0
 		      tca3l(i,j,1) = 0
@@ -1105,11 +1114,13 @@ End
 		    for j = 0 to y-1
 		      select case singles_actions(tcas(i,j,0),tcas(i,j,1),tcas(i,j,2),tcas(i,j,3),tcas(i,j,4),tcas(i,j,5),tcas(i,j,6),tcas(i,j,7))
 		      case "c"
-		        dsa(i,j,current_dsa) = true
+		        dsa(i,j,next_dsa) = true
 		      case "u"
-		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
+		        dsa(i,j,next_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j,current_dsa) = false
+		        dsa(i,j,next_dsa) = false
+		      else
+		        dsa(i,j,next_dsa) = dsa(i,j,current_dsa)
 		      end select
 		      tcas(i,j,0) = 0
 		      tcas(i,j,1) = 0
@@ -1133,11 +1144,13 @@ End
 		    for j = 0 to y-1
 		      select case split_level_actions(tcal(i,j,0),tcal(i,j,1))
 		      case "c"
-		        dsa(i,j,current_dsa) = true
+		        dsa(i,j,next_dsa) = true
 		      case "u"
-		        dsa(i,j,current_dsa) = not dsa(i,j,current_dsa)
+		        dsa(i,j,next_dsa) = not dsa(i,j,current_dsa)
 		      case "d"
-		        dsa(i,j,current_dsa) = false
+		        dsa(i,j,next_dsa) = false
+		      else
+		        dsa(i,j,next_dsa) = dsa(i,j,current_dsa)
 		      end select
 		      tcal(i,j,0) = 0
 		      tcal(i,j,1) = 0
@@ -1387,6 +1400,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		next_dsa As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		singles_actions(1,1,1,1,1,1,1,1) As String
 	#tag EndProperty
 
@@ -1494,6 +1511,8 @@ End
 		  case "classic"
 		    one_step
 		  end select
+		  current_dsa = next_dsa
+		  next_dsa = 1 - current_dsa
 		  generations = generations+1
 		  GenCountLabel.Text = Str(generations,gens_fstring)
 		  Refresh
@@ -1852,6 +1871,11 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="l2_weight_classic"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="current_dsa"
 		Group="Behavior"
 		Type="Integer"
 	#tag EndViewProperty
