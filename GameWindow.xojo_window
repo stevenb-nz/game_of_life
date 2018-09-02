@@ -420,14 +420,12 @@ End
 		  g.ForeColor = &cf0f0f0
 		  g.FillRect(392,392,16,16)
 		  
+		  g.ForeColor = &cdf0022
 		  for i = 0 to x-1
 		    for j = 0 to y-1
 		      if dsa(i,j,current_dsa) then
-		        g.ForeColor = &cdf0022
-		      else
-		        g.ForeColor = &ce9e9e9
+		        g.FillOval(i*8+1,j*8+1,6,6)
 		      end
-		      g.FillOval(i*8+1,j*8+1,6,6)
 		    next
 		  next
 		  
@@ -1884,6 +1882,11 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="current_dsa"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="next_dsa"
 		Group="Behavior"
 		Type="Integer"
 	#tag EndViewProperty
