@@ -525,6 +525,7 @@ End
 		Sub enableButtons()
 		  StepButton.enabled = true
 		  BackButton.Enabled = true
+		  FPSUpDownArrows.Enabled = true
 		  
 		End Sub
 	#tag EndMethod
@@ -1594,6 +1595,7 @@ End
 		    me.Caption = "Stop"
 		    StepButton.enabled = false
 		    BackButton.Enabled = false
+		    FPSUpDownArrows.Enabled = false
 		    mytimer.Period = floor(1000 / fps)
 		    mytimer.Mode = Timer.ModeMultiple
 		  else
@@ -1663,6 +1665,40 @@ End
 		    generations = generations+1
 		    GenCountLabel.Text = Str(generations,gens_fstring)
 		    Refresh
+		  end
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events FPSUpDownArrows
+	#tag Event
+		Sub Up()
+		  dim inc as integer
+		  
+		  inc = floor(fps / 10 + 1)
+		  
+		  if fps <  500 then
+		    fps = fps + inc
+		    if fps > 500 then
+		      fps = 500
+		    end
+		    FPSLabel.Text = str(fps) + " fps"
+		  end
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Down()
+		  dim dec as integer
+		  
+		  dec = floor(fps / 10 + 1)
+		  
+		  if fps > 1 then
+		    fps = fps - dec
+		    if fps < 1 then
+		      fps = 1
+		    end
+		    FPSLabel.Text = str(fps) + " fps"
 		  end
 		  
 		End Sub
