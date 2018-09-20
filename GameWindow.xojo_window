@@ -323,7 +323,7 @@ Begin Window GameWindow
       Visible         =   True
       Width           =   80
    End
-   Begin UpDownArrows UpDownArrows1
+   Begin UpDownArrows FPSUpDownArrows
       AcceptFocus     =   False
       AutoDeactivate  =   True
       Enabled         =   True
@@ -346,7 +346,7 @@ Begin Window GameWindow
       Visible         =   True
       Width           =   13
    End
-   Begin Label Label1
+   Begin Label FPSLabel
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -369,7 +369,7 @@ Begin Window GameWindow
       TabIndex        =   11
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "500 fps"
+      Text            =   "5 fps"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -415,6 +415,8 @@ End
 		  dim classic_actions_string as string
 		  
 		  mytimer = new CustomTimer
+		  fps = 5
+		  FPSLabel.Text = str(fps) + " fps"
 		  gens_fstring = "#,###,###"
 		  reset_gens
 		  x = 100
@@ -1418,6 +1420,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		fps As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		generations As Integer
 	#tag EndProperty
 
@@ -1588,7 +1594,7 @@ End
 		    me.Caption = "Stop"
 		    StepButton.enabled = false
 		    BackButton.Enabled = false
-		    mytimer.Period = 0
+		    mytimer.Period = floor(1000 / fps)
 		    mytimer.Mode = Timer.ModeMultiple
 		  else
 		    me.Caption = "Start"
