@@ -323,7 +323,7 @@ Begin Window GameWindow
       Visible         =   True
       Width           =   80
    End
-   Begin UpDownArrows FPSUpDownArrows
+   Begin CustomFPSUpDownArrows FPSUpDownArrows
       AcceptFocus     =   False
       AutoDeactivate  =   True
       Enabled         =   True
@@ -1673,9 +1673,15 @@ End
 #tag Events FPSUpDownArrows
 	#tag Event
 		Sub Up()
+		  dim d as new date
 		  dim inc as integer
 		  
-		  inc = floor(fps / 10 + 1)
+		  if d.TotalSeconds > me.lastUp then
+		    inc = 1
+		  else
+		    inc = floor(fps / 10 + 1)
+		  end
+		  me.lastUp = d.TotalSeconds
 		  
 		  if fps <  500 then
 		    fps = fps + inc
@@ -1689,9 +1695,15 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Down()
+		  dim d as new date
 		  dim dec as integer
 		  
-		  dec = floor(fps / 10 + 1)
+		  if d.TotalSeconds > me.lastDown then
+		    dec = 1
+		  else
+		    dec = floor(fps / 10 + 1)
+		  end
+		  me.lastDown = d.TotalSeconds
 		  
 		  if fps > 1 then
 		    fps = fps - dec
@@ -1987,6 +1999,11 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="next_dsa"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="fps"
 		Group="Behavior"
 		Type="Integer"
 	#tag EndViewProperty

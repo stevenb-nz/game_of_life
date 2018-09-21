@@ -11,6 +11,7 @@ Window=edit2LayersWindow;edit2LayersWindow.xojo_window;&h000000004EB3CFFF;&h0000
 Window=editSplitLevelWindow;editSplitLevelWindow.xojo_window;&h000000006766F7FF;&h0000000000000000;false
 Window=editSplit3LevelWindow;editSplit3LevelWindow.xojo_window;&h000000007E8BB7FF;&h0000000000000000;false
 Window=editSinglesWindow;editSinglesWindow.xojo_window;&h000000005B094FFF;&h0000000000000000;false
+Class=CustomFPSUpDownArrows;CustomFPSUpDownArrows.xojo_code;&h00000000217D47FF;&h0000000000000000;false
 DefaultWindow=GameWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
